@@ -43,6 +43,7 @@ class Renderer: NSObject {
         renderPipelineDescriptor.fragmentFunction = fragmentFunction
         renderPipelineDescriptor.colorAttachments[0].pixelFormat = metalView.colorPixelFormat
         
+        /*
         // Load model
         let vertexDescriptor = MTLVertexDescriptor()
         vertexDescriptor.attributes[0].format = .float3
@@ -69,14 +70,30 @@ class Renderer: NSObject {
         }
         
         renderPipelineDescriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(mtkMesh.vertexDescriptor)
+        */
+        
+//        let cubeMesh = Primitive.makeCube(device: device, size: 0.5)
+//        guard let mtkCubeMesh = try? MTKMesh(mesh: cubeMesh, device: device) else {
+//            fatalError()
+//        }
+//        let vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(mtkCubeMesh.vertexDescriptor)
+        
+//        renderPipelineDescriptor.vertexDescriptor = vertexDescriptor
+        
+        let sphereMesh = Primitive.makeSphere(device: device, size: 0.8, segment: 100)
+        guard let mtkSphereMesh = try? MTKMesh(mesh: sphereMesh, device: device ) else {
+            fatalError()
+        }
+        let vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(mtkSphereMesh.vertexDescriptor)
+        renderPipelineDescriptor.vertexDescriptor = vertexDescriptor
         
         // Setup pipeline state
         guard let renderPipelineState = try? device.makeRenderPipelineState(descriptor: renderPipelineDescriptor) else {
             fatalError("Create pipeline state failed")
         }
         
-        mesh = mtkMesh
-        vertexBuffer = mtkMesh.vertexBuffers[0].buffer
+        mesh = mtkSphereMesh
+        vertexBuffer = mtkSphereMesh.vertexBuffers[0].buffer
         pipelineState = renderPipelineState
         
         super.init()
@@ -97,6 +114,8 @@ extension Renderer: MTKViewDelegate {
         guard let commandBuffer = Renderer.commandQueue?.makeCommandBuffer() else {
             fatalError("Create command buffer failed")
         }
+        
+        renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(0.1, 0.1, 0.1, 1)
         guard let commandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {
             fatalError("Create encoder failed")
         }
@@ -106,11 +125,10 @@ extension Renderer: MTKViewDelegate {
         }
         
         timer += 0.05
-        var currentTime: Float = sin(timer)
+        var currentTime: Float = 0
         commandEncoder.setVertexBytes(&currentTime, length: MemoryLayout<Float>.stride, index: 1)
-        
         commandEncoder.setRenderPipelineState(pipelineState)
-        commandEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+        commandEncoder.setVertexBuffers([vertexBuffer], offsets: [0], range:0..<1 )
         
         // Drawing
         mesh?.submeshes.forEach {
@@ -120,7 +138,6 @@ extension Renderer: MTKViewDelegate {
                                                  indexBuffer: $0.indexBuffer.buffer,
                                                  indexBufferOffset: $0.indexBuffer.offset)
         }
-        
         commandEncoder.endEncoding()
         
         guard let drawable = view.currentDrawable else {
