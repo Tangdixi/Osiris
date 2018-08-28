@@ -38,11 +38,33 @@ typedef vector_float2 float2;
 typedef vector_float3 float3;
 typedef vector_float4 float4;
 
+typedef struct {
+    float4x4 modelMatrix;
+    float4x4 viewMatrix;
+    float4x4 projectionMatrix;
+    float3x3 normalMatrix;
+} Uniforms;
+
+typedef enum {
+    Unused = 0,
+    SunLight = 1,
+    SpotLight = 2,
+    PointLight = 3,
+    AmbientLight = 4,
+} LightType;
 
 typedef struct {
-  float4x4 modelMatrix;
-  float4x4 viewMatrix;
-  float4x4 projectionMatrix;
-} Uniforms;
+    float3 position;
+    float3 color;
+    float3 specularColor;
+    float intensity;
+    float3 attenuation;
+    LightType lightType;
+} Light;
+
+typedef struct {
+    uint lightCount;
+    float3 cameraPosition;
+} FragmentUniforms;
 
 #endif /* Common_h */

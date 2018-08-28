@@ -19,14 +19,19 @@ class Renderer: NSObject {
     
     var draw: DrawPhase?
     var renderPipelineState: MTLRenderPipelineState?
+    var depthStencilState: MTLDepthStencilState?
+    
+    var colorPixelFormat: MTLPixelFormat!
     
     init(metalView: MTKView) {
         super.init()
         metalView.delegate = self
         metalView.device = device
-        metalView.clearColor = MTLClearColorMake(1.0, 1.0, 0.8, 1.0)
-    }
-}
+        metalView.clearColor = MTLClearColorMake(0.1, 0.1, 0.1, 1.0)
+        
+        colorPixelFormat = metalView.colorPixelFormat
+    }}
+
 
 extension Renderer {
     
@@ -47,13 +52,14 @@ extension Renderer: MTKViewDelegate {
         guard let renderCommandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {
             fatalError("Create render command encoder fail")
         }
-        guard let renderPipelineState = renderPipelineState else {
-            fatalError("Renderer need a pipeline state and a vertex buffer")
+        
+        // Setup the depth stencil state if needed
+        if let depthStencilState = depthStencilState {
+            renderCommandEncoder.setDepthStencilState(depthStencilState)
         }
         
-        renderCommandEncoder.setRenderPipelineState(renderPipelineState)
-        
         if let draw = draw {
+            // The caller handle the pipeline state and drawing phase
             draw(renderCommandEncoder)
         }
         
