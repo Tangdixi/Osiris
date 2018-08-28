@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		816178DF213401730088D022 /* train.obj in Resources */ = {isa = PBXBuildFile; fileRef = 816178DD213401730088D022 /* train.obj */; };
+		816178E0213401730088D022 /* train.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 816178DE213401730088D022 /* train.mtl */; };
+		816178E321352A6C0088D022 /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816178E221352A6C0088D022 /* MathLibrary.swift */; };
 		81833AB1212FE21E00A28975 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81833AB0212FE21E00A28975 /* AppDelegate.swift */; };
 		81833AB3212FE21E00A28975 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81833AB2212FE21E00A28975 /* ViewController.swift */; };
 		81833AB5212FE22000A28975 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81833AB4212FE22000A28975 /* Assets.xcassets */; };
@@ -17,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		816178DD213401730088D022 /* train.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.obj; sourceTree = "<group>"; };
+		816178DE213401730088D022 /* train.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.mtl; sourceTree = "<group>"; };
+		816178E121352A650088D022 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		816178E221352A6C0088D022 /* MathLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathLibrary.swift; sourceTree = "<group>"; };
 		81833AAD212FE21E00A28975 /* Metal Utility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Metal Utility.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81833AB0212FE21E00A28975 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81833AB2212FE21E00A28975 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +47,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		816178DC213401730088D022 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				816178DD213401730088D022 /* train.obj */,
+				816178DE213401730088D022 /* train.mtl */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		81833AA4212FE21E00A28975 = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +79,9 @@
 				81833AB2212FE21E00A28975 /* ViewController.swift */,
 				81833AC0212FE23400A28975 /* Renderer.swift */,
 				81833AC22131367100A28975 /* Primitive.swift */,
+				816178E121352A650088D022 /* Common.h */,
+				816178E221352A6C0088D022 /* MathLibrary.swift */,
+				816178DC213401730088D022 /* Models */,
 				81833AC42131437800A28975 /* Shaders.metal */,
 				81833AB4212FE22000A28975 /* Assets.xcassets */,
 				81833AB6212FE22000A28975 /* Main.storyboard */,
@@ -132,6 +151,8 @@
 			files = (
 				81833AB5212FE22000A28975 /* Assets.xcassets in Resources */,
 				81833AB8212FE22000A28975 /* Main.storyboard in Resources */,
+				816178E0213401730088D022 /* train.mtl in Resources */,
+				816178DF213401730088D022 /* train.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +168,7 @@
 				81833AB1212FE21E00A28975 /* AppDelegate.swift in Sources */,
 				81833AC32131367100A28975 /* Primitive.swift in Sources */,
 				81833AC52131437800A28975 /* Shaders.metal in Sources */,
+				816178E321352A6C0088D022 /* MathLibrary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +313,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "DC.Metal-Utility";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Metal Utility/Common.h";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -309,6 +332,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "DC.Metal-Utility";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Metal Utility/Common.h";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;

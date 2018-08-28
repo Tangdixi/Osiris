@@ -43,7 +43,7 @@ class Renderer: NSObject {
         renderPipelineDescriptor.fragmentFunction = fragmentFunction
         renderPipelineDescriptor.colorAttachments[0].pixelFormat = metalView.colorPixelFormat
         
-        /*
+        
         // Load model
         let vertexDescriptor = MTLVertexDescriptor()
         vertexDescriptor.attributes[0].format = .float3
@@ -70,7 +70,7 @@ class Renderer: NSObject {
         }
         
         renderPipelineDescriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(mtkMesh.vertexDescriptor)
-        */
+        
         
 //        let cubeMesh = Primitive.makeCube(device: device, size: 0.5)
 //        guard let mtkCubeMesh = try? MTKMesh(mesh: cubeMesh, device: device) else {
@@ -80,11 +80,11 @@ class Renderer: NSObject {
         
 //        renderPipelineDescriptor.vertexDescriptor = vertexDescriptor
         
-        let sphereMesh = Primitive.makeSphere(device: device, size: 0.8, segment: 100)
-        guard let mtkSphereMesh = try? MTKMesh(mesh: sphereMesh, device: device ) else {
-            fatalError()
-        }
-        let vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(mtkSphereMesh.vertexDescriptor)
+//        let sphereMesh = Primitive.makeSphere(device: device, size: 0.8, segment: 100)
+//        guard let mtkSphereMesh = try? MTKMesh(mesh: sphereMesh, device: device ) else {
+//            fatalError()
+//        }
+//        let vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(mtkSphereMesh.vertexDescriptor)
         renderPipelineDescriptor.vertexDescriptor = vertexDescriptor
         
         // Setup pipeline state
@@ -92,8 +92,8 @@ class Renderer: NSObject {
             fatalError("Create pipeline state failed")
         }
         
-        mesh = mtkSphereMesh
-        vertexBuffer = mtkSphereMesh.vertexBuffers[0].buffer
+        mesh = mtkMesh
+        vertexBuffer = mtkMesh.vertexBuffers[0].buffer
         pipelineState = renderPipelineState
         
         super.init()

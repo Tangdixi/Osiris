@@ -14,6 +14,9 @@ class ViewController: NSViewController {
 
     lazy var renderer: Renderer = makeRenderer()
     lazy var renderPipelineState: MTLRenderPipelineState = makeRenderPipelineState()
+    lazy var model: (MDLMesh, MTLVertexDescriptor) = makeModel()
+    
+    var timer: Float = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,32 +32,43 @@ extension ViewController {
             fatalError("Metal is not supported in this device")
         }
         
-        // Vertex buffer
-        var vertices: [float3] = [
-            [-0.7, 0.8, 1],
-            [-0.7, -0.4, 1],
-            [0.4, 0.2, 1]
-        ]
-        guard let vertexBuffer = device.makeBuffer(bytes:&vertices, length: MemoryLayout<float3>.stride * vertices.count, options: []) else {
-            fatalError("Invalid vertex buffer")
+        guard let mtkTrainMesh = try? MTKMesh(mesh: model.0, device: device) else {
+            fatalError("Create mesh fail")
         }
-        
-        var matrix = matrix_identity_float4x4
-        matrix.columns.3 = float4(0.5,0,0,1)
         
         // Fragment buffer
         var color = float4(0.6,0.6,0.6,1)
         
         renderer.renderPipelineState = renderPipelineState
         renderer.draw = { (renderCommandEncoder) in
+            
+            self.timer += 0.05
+            
+            let translation = float4x4(translation: [0, 0.3, 0])
+            let rotation = float4x4(rotation: [0, radians(fromDegrees: 45), 0])
+            let modelMatrix = rotation * translation
+            
+            let viewMatrix = float4x4(translation: [0,0,-3]).inverse
+            let projectionMatrix = float4x4(projectionFov: radians(fromDegrees: 45),
+                                            near: 0.001,
+                                            far: 1000,
+                                            aspect: Float(self.view.frame.width/self.view.frame.height))
+            
+            var uniforms = Uniforms(modelMatrix: modelMatrix, viewMatrix: viewMatrix, projectionMatrix: projectionMatrix)
+            
             // Vertex shader
-            renderCommandEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
-            renderCommandEncoder.setVertexBytes(&matrix, length: MemoryLayout<float4x4>.stride, index: 1)
+            renderCommandEncoder.setVertexBuffer(mtkTrainMesh.vertexBuffers[0].buffer, offset: 0, index: 0)
+            renderCommandEncoder.setVertexBytes(&uniforms, length: MemoryLayout<Uniforms>.stride, index: 1)
             // Fragment shader
             renderCommandEncoder.setFragmentBytes(&color, length: MemoryLayout<float4>.stride, index: 0)
             
-            renderCommandEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertices.count)
-            
+            mtkTrainMesh.submeshes.forEach {
+                renderCommandEncoder.drawIndexedPrimitives(type: .triangle,
+                                                           indexCount: $0.indexCount,
+                                                           indexType: $0.indexType,
+                                                           indexBuffer: $0.indexBuffer.buffer,
+                                                           indexBufferOffset: $0.indexBuffer.offset)
+            }
         }
     }
 }
@@ -81,6 +95,7 @@ extension ViewController {
         let renderPipelineDescriptor = MTLRenderPipelineDescriptor()
         renderPipelineDescriptor.vertexFunction = vertexFunction
         renderPipelineDescriptor.fragmentFunction = fragmentFunction
+        renderPipelineDescriptor.vertexDescriptor = model.1
         
         // Pixel format
         guard let metalView = view as? MTKView else {
@@ -99,10 +114,18 @@ extension ViewController {
         guard let device = renderer.device else {
             fatalError("Metal is not supported in this device")
         }
+        
         var vertices = [float3(0,0,0.5)]
         guard let vertexBuffer = device.makeBuffer(bytes:&vertices, length: MemoryLayout<float3>.stride, options: []) else {
             fatalError("Invalid vertex buffer")
         }
         return vertexBuffer
+    }
+    
+    func makeModel() -> (MDLMesh, MTLVertexDescriptor) {
+        guard let device = renderer.device else {
+            fatalError("Metal is not supported in this device")
+        }
+        return Primitive.makeTrain(device: device)
     }
 }
