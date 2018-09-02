@@ -1,0 +1,432 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		812050A92136B80A009C4441 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812050A82136B80A009C4441 /* Model.swift */; };
+		816178E321352A6C0088D022 /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816178E221352A6C0088D022 /* MathLibrary.swift */; };
+		816178E5213665C70088D022 /* LightFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816178E4213665C70088D022 /* LightFactory.swift */; };
+		81833AB1212FE21E00A28975 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81833AB0212FE21E00A28975 /* AppDelegate.swift */; };
+		81833AB3212FE21E00A28975 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81833AB2212FE21E00A28975 /* ViewController.swift */; };
+		81833AB5212FE22000A28975 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81833AB4212FE22000A28975 /* Assets.xcassets */; };
+		81833AB8212FE22000A28975 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81833AB6212FE22000A28975 /* Main.storyboard */; };
+		81833AC1212FE23400A28975 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81833AC0212FE23400A28975 /* Renderer.swift */; };
+		81833AC32131367100A28975 /* PrimitiveFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81833AC22131367100A28975 /* PrimitiveFactory.swift */; };
+		81833AC52131437800A28975 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 81833AC42131437800A28975 /* Shaders.metal */; };
+		81DFB757213A985200F3D5E2 /* lowpoly-house-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DFB74D213A985200F3D5E2 /* lowpoly-house-color.png */; };
+		81DFB758213A985200F3D5E2 /* lowpoly-house.obj in Resources */ = {isa = PBXBuildFile; fileRef = 81DFB74E213A985200F3D5E2 /* lowpoly-house.obj */; };
+		81DFB759213A985200F3D5E2 /* lowpoly-house.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 81DFB74F213A985200F3D5E2 /* lowpoly-house.mtl */; };
+		81DFB75A213A985200F3D5E2 /* green-grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DFB751213A985200F3D5E2 /* green-grass.png */; };
+		81DFB75B213A985200F3D5E2 /* lowpoly-barn-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DFB752213A985200F3D5E2 /* lowpoly-barn-color.png */; };
+		81DFB75C213A985200F3D5E2 /* plane.obj in Resources */ = {isa = PBXBuildFile; fileRef = 81DFB754213A985200F3D5E2 /* plane.obj */; };
+		81DFB75D213A985200F3D5E2 /* plane.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 81DFB755213A985200F3D5E2 /* plane.mtl */; };
+		81DFB75E213A985200F3D5E2 /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DFB756213A985200F3D5E2 /* ground.png */; };
+		81DFB760213AAA2000F3D5E2 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFB75F213AAA2000F3D5E2 /* Texture.swift */; };
+		81E41A4A2137B05F007DB390 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E41A492137B05F007DB390 /* Node.swift */; };
+		81E41A542137E737007DB390 /* DebugLights.metal in Sources */ = {isa = PBXBuildFile; fileRef = 81E41A532137E737007DB390 /* DebugLights.metal */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		812050A82136B80A009C4441 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		816178E121352A650088D022 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		816178E221352A6C0088D022 /* MathLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathLibrary.swift; sourceTree = "<group>"; };
+		816178E4213665C70088D022 /* LightFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightFactory.swift; sourceTree = "<group>"; };
+		81833AAD212FE21E00A28975 /* Metal Utility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Metal Utility.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81833AB0212FE21E00A28975 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		81833AB2212FE21E00A28975 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		81833AB4212FE22000A28975 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		81833AB7212FE22000A28975 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		81833AB9212FE22000A28975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81833ABA212FE22000A28975 /* Metal_Utility.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Metal_Utility.entitlements; sourceTree = "<group>"; };
+		81833AC0212FE23400A28975 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		81833AC22131367100A28975 /* PrimitiveFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveFactory.swift; sourceTree = "<group>"; };
+		81833AC42131437800A28975 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		81DFB74D213A985200F3D5E2 /* lowpoly-house-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lowpoly-house-color.png"; sourceTree = "<group>"; };
+		81DFB74E213A985200F3D5E2 /* lowpoly-house.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "lowpoly-house.obj"; sourceTree = "<group>"; };
+		81DFB74F213A985200F3D5E2 /* lowpoly-house.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "lowpoly-house.mtl"; sourceTree = "<group>"; };
+		81DFB751213A985200F3D5E2 /* green-grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-grass.png"; sourceTree = "<group>"; };
+		81DFB752213A985200F3D5E2 /* lowpoly-barn-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lowpoly-barn-color.png"; sourceTree = "<group>"; };
+		81DFB754213A985200F3D5E2 /* plane.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = plane.obj; sourceTree = "<group>"; };
+		81DFB755213A985200F3D5E2 /* plane.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = plane.mtl; sourceTree = "<group>"; };
+		81DFB756213A985200F3D5E2 /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ground.png; sourceTree = "<group>"; };
+		81DFB75F213AAA2000F3D5E2 /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
+		81E41A492137B05F007DB390 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		81E41A532137E737007DB390 /* DebugLights.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = DebugLights.metal; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		81833AAA212FE21E00A28975 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		816178DC213401730088D022 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				81DFB753213A985200F3D5E2 /* Ground */,
+				81DFB74C213A985200F3D5E2 /* LowPolyHouse */,
+				81DFB750213A985200F3D5E2 /* Textures */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		81833AA4212FE21E00A28975 = {
+			isa = PBXGroup;
+			children = (
+				81833AAF212FE21E00A28975 /* Metal Utility */,
+				81833AAE212FE21E00A28975 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		81833AAE212FE21E00A28975 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				81833AAD212FE21E00A28975 /* Metal Utility.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		81833AAF212FE21E00A28975 /* Metal Utility */ = {
+			isa = PBXGroup;
+			children = (
+				81833AB0212FE21E00A28975 /* AppDelegate.swift */,
+				81833AB2212FE21E00A28975 /* ViewController.swift */,
+				81833AC0212FE23400A28975 /* Renderer.swift */,
+				816178E4213665C70088D022 /* LightFactory.swift */,
+				81833AC22131367100A28975 /* PrimitiveFactory.swift */,
+				812050A82136B80A009C4441 /* Model.swift */,
+				81E41A492137B05F007DB390 /* Node.swift */,
+				816178E121352A650088D022 /* Common.h */,
+				816178E221352A6C0088D022 /* MathLibrary.swift */,
+				81DFB75F213AAA2000F3D5E2 /* Texture.swift */,
+				816178DC213401730088D022 /* Models */,
+				81E41A532137E737007DB390 /* DebugLights.metal */,
+				81833AC42131437800A28975 /* Shaders.metal */,
+				81833AB4212FE22000A28975 /* Assets.xcassets */,
+				81833AB6212FE22000A28975 /* Main.storyboard */,
+				81833AB9212FE22000A28975 /* Info.plist */,
+				81833ABA212FE22000A28975 /* Metal_Utility.entitlements */,
+			);
+			path = "Metal Utility";
+			sourceTree = "<group>";
+		};
+		81DFB74C213A985200F3D5E2 /* LowPolyHouse */ = {
+			isa = PBXGroup;
+			children = (
+				81DFB74D213A985200F3D5E2 /* lowpoly-house-color.png */,
+				81DFB74E213A985200F3D5E2 /* lowpoly-house.obj */,
+				81DFB74F213A985200F3D5E2 /* lowpoly-house.mtl */,
+			);
+			path = LowPolyHouse;
+			sourceTree = "<group>";
+		};
+		81DFB750213A985200F3D5E2 /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+				81DFB751213A985200F3D5E2 /* green-grass.png */,
+				81DFB752213A985200F3D5E2 /* lowpoly-barn-color.png */,
+			);
+			path = Textures;
+			sourceTree = "<group>";
+		};
+		81DFB753213A985200F3D5E2 /* Ground */ = {
+			isa = PBXGroup;
+			children = (
+				81DFB754213A985200F3D5E2 /* plane.obj */,
+				81DFB755213A985200F3D5E2 /* plane.mtl */,
+				81DFB756213A985200F3D5E2 /* ground.png */,
+			);
+			path = Ground;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		81833AAC212FE21E00A28975 /* Metal Utility */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81833ABD212FE22000A28975 /* Build configuration list for PBXNativeTarget "Metal Utility" */;
+			buildPhases = (
+				81833AA9212FE21E00A28975 /* Sources */,
+				81833AAA212FE21E00A28975 /* Frameworks */,
+				81833AAB212FE21E00A28975 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Metal Utility";
+			productName = "Metal Utility";
+			productReference = 81833AAD212FE21E00A28975 /* Metal Utility.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		81833AA5212FE21E00A28975 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = DC;
+				TargetAttributes = {
+					81833AAC212FE21E00A28975 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+				};
+			};
+			buildConfigurationList = 81833AA8212FE21E00A28975 /* Build configuration list for PBXProject "Metal Utility" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 81833AA4212FE21E00A28975;
+			productRefGroup = 81833AAE212FE21E00A28975 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				81833AAC212FE21E00A28975 /* Metal Utility */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		81833AAB212FE21E00A28975 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81DFB757213A985200F3D5E2 /* lowpoly-house-color.png in Resources */,
+				81DFB758213A985200F3D5E2 /* lowpoly-house.obj in Resources */,
+				81DFB75C213A985200F3D5E2 /* plane.obj in Resources */,
+				81DFB75B213A985200F3D5E2 /* lowpoly-barn-color.png in Resources */,
+				81DFB75E213A985200F3D5E2 /* ground.png in Resources */,
+				81DFB75A213A985200F3D5E2 /* green-grass.png in Resources */,
+				81DFB75D213A985200F3D5E2 /* plane.mtl in Resources */,
+				81DFB759213A985200F3D5E2 /* lowpoly-house.mtl in Resources */,
+				81833AB5212FE22000A28975 /* Assets.xcassets in Resources */,
+				81833AB8212FE22000A28975 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		81833AA9212FE21E00A28975 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81833AB3212FE21E00A28975 /* ViewController.swift in Sources */,
+				81833AC1212FE23400A28975 /* Renderer.swift in Sources */,
+				81E41A542137E737007DB390 /* DebugLights.metal in Sources */,
+				816178E5213665C70088D022 /* LightFactory.swift in Sources */,
+				81E41A4A2137B05F007DB390 /* Node.swift in Sources */,
+				81833AB1212FE21E00A28975 /* AppDelegate.swift in Sources */,
+				81833AC32131367100A28975 /* PrimitiveFactory.swift in Sources */,
+				81833AC52131437800A28975 /* Shaders.metal in Sources */,
+				816178E321352A6C0088D022 /* MathLibrary.swift in Sources */,
+				81DFB760213AAA2000F3D5E2 /* Texture.swift in Sources */,
+				812050A92136B80A009C4441 /* Model.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		81833AB6212FE22000A28975 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81833AB7212FE22000A28975 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		81833ABB212FE22000A28975 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		81833ABC212FE22000A28975 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		81833ABE212FE22000A28975 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Metal Utility/Metal_Utility.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Metal Utility/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "DC.Metal-Utility";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Metal Utility/Common.h";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		81833ABF212FE22000A28975 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Metal Utility/Metal_Utility.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Metal Utility/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "DC.Metal-Utility";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Metal Utility/Common.h";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		81833AA8212FE21E00A28975 /* Build configuration list for PBXProject "Metal Utility" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81833ABB212FE22000A28975 /* Debug */,
+				81833ABC212FE22000A28975 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81833ABD212FE22000A28975 /* Build configuration list for PBXNativeTarget "Metal Utility" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81833ABE212FE22000A28975 /* Debug */,
+				81833ABF212FE22000A28975 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 81833AA5212FE21E00A28975 /* Project object */;
+}
