@@ -10,21 +10,16 @@
 using namespace metal;
 #import "OsirisShaderBridge.h"
 
-struct VertexIn {
-    float4 position [[attribute(Position)]];
-    float2 uv [[attribute(UV)]];
-};
-
 struct VertexOut {
     float4 position [[position]];
     float2 uv;
 };
 
-vertex VertexOut vertex_main(const VertexIn vertexIn [[stage_in]],
-                             const uint vid [[vertex_id]]) {
+vertex VertexOut vertex_main(constant Vertexs *vertices [[buffer(BufferIndexVertex)]],
+                             const uint id [[vertex_id]]) {
     VertexOut vertexOut;
-    vertexOut.position = vertexIn.position;
-    vertexOut.uv = vertexIn.uv;
+    vertexOut.position = float4(vertices[id].position, 1);
+    vertexOut.uv = vertices[id].uv;
     return vertexOut;
 }
 

@@ -18,6 +18,11 @@ typedef vector_float3 float3;
 typedef vector_float4 float4;
 
 typedef struct {
+    float3 position;
+    float2 uv;
+} Vertexs;
+
+typedef struct {
     float4x4 modelMatrix;
     float4x4 viewMatrix;
     float4x4 projectionMatrix;

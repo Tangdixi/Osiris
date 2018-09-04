@@ -22,11 +22,11 @@ class Osiris: NSObject {
     
     var shouldProcess: Bool = false
     var pixelFormat: MTLPixelFormat
-    var viewportSize: vector_uint2
+    var viewportSize: vector_uint2?
     
     init(metalView: MTKView) {
         self.pixelFormat = metalView.colorPixelFormat
-        self.viewportSize = vector2(UInt32(metalView.drawableSize.width), UInt32(metalView.drawableSize.height))
+//        self.viewportSize = vector2(UInt32(metalView.drawableSize.width), UInt32(metalView.drawableSize.height))
         super.init()
         
         metalView.delegate = self
@@ -42,7 +42,7 @@ extension Osiris {
 
 extension Osiris: MTKViewDelegate {
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-        viewportSize = vector2(UInt32(view.drawableSize.width), UInt32(view.drawableSize.height))
+//        viewportSize = vector2(UInt32(view.drawableSize.width), UInt32(view.drawableSize.height))
     }
     func draw(in view: MTKView) {
         
@@ -60,6 +60,7 @@ extension Osiris: MTKViewDelegate {
             fatalError("Create render command encoder fail")
         }
 
+        renderCommandEncoder.setRenderPipelineState(renderPipelineState)
         renderCommandEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: Int(BufferIndexVertex.rawValue))
         renderCommandEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 6)
         renderCommandEncoder.endEncoding()
@@ -88,19 +89,18 @@ extension Osiris {
         }
         return commandQueue
     }
+    
     func makeVertexBuffer() -> MTLBuffer {
         var vertices = [
-            [float4(0.5, -0.5, 0.0, 1.0), float2(1.0, 1.0)],
-            [float4(-0.5, -0.5, 0.0, 1.0), float2(0.0, 1.0)],
-            [float4(-0.5, 0.5, 0.0, 1.0), float2(0.0, 0.0)],
-            [float4(0.5, -0.5, 0.0, 1.0), float2(1.0, 1.0)],
-            [float4(-0.5, 0.5, 0.0, 1.0), float2(0.0, 0.0)],
-            [float4(0.5, 0.5, 0.0, 1.0), float2(1.0, 0.0)],
+            Vertexs(position: float3(0.5, -0.5, 0.0), uv: float2(1.0, 1.0)),
+            Vertexs(position: float3(-0.5, -0.5, 0.0), uv: float2(0.0, 1.0)),
+            Vertexs(position: float3(-0.5, 0.5, 0.0), uv: float2(0.0, 0.0)),
+            Vertexs(position: float3(0.5, -0.5, 0.0), uv: float2(1.0, 1.0)),
+            Vertexs(position: float3(-0.5, 0.5, 0.0), uv: float2(0.0, 0.0)),
+            Vertexs(position: float3(0.5, 0.5, 0.0), uv: float2(1.0, 0.0))
         ]
-        
-        let length = (MemoryLayout<float3>.stride + MemoryLayout<float2>.stride) * 6
-        guard let vertexBuffer = device.makeBuffer(bytes: &vertices, length: length, options: .storageModeShared) else {
-            fatalError("Create vertex buffer faile")
+        guard let vertexBuffer = device.makeBuffer(bytes: &vertices, length: MemoryLayout<Vertexs>.stride * vertices.count, options: []) else {
+            fatalError("Create vertex fail")
         }
         return vertexBuffer
     }

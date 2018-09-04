@@ -7,32 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		43557AAA213D77EE001538FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43557AA9213D77EE001538FA /* AppDelegate.swift */; };
-		43557AAC213D77EE001538FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43557AAB213D77EE001538FA /* ViewController.swift */; };
-		43557AAF213D77EE001538FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43557AAD213D77EE001538FA /* Main.storyboard */; };
-		43557AB1213D77EF001538FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43557AB0213D77EF001538FA /* Assets.xcassets */; };
-		43557AB4213D77EF001538FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43557AB2213D77EF001538FA /* LaunchScreen.storyboard */; };
-		81ACA728213E8EFD00DC23A0 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 81ACA724213E8EFD00DC23A0 /* Shaders.metal */; };
-		81ACA729213E8EFD00DC23A0 /* Osiris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACA725213E8EFD00DC23A0 /* Osiris.swift */; };
-		81ACA72A213E8EFD00DC23A0 /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACA727213E8EFD00DC23A0 /* MathLibrary.swift */; };
+		81ACA6FC213E828A00DC23A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACA6FB213E828A00DC23A0 /* AppDelegate.swift */; };
+		81ACA6FE213E828A00DC23A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACA6FD213E828A00DC23A0 /* ViewController.swift */; };
+		81ACA700213E828B00DC23A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81ACA6FF213E828B00DC23A0 /* Assets.xcassets */; };
+		81ACA703213E828B00DC23A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81ACA701213E828B00DC23A0 /* Main.storyboard */; };
+		81ACA720213E8EDB00DC23A0 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 81ACA71C213E8EDA00DC23A0 /* Shaders.metal */; };
+		81ACA721213E8EDB00DC23A0 /* Osiris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACA71D213E8EDA00DC23A0 /* Osiris.swift */; };
+		81ACA722213E8EDB00DC23A0 /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACA71F213E8EDA00DC23A0 /* MathLibrary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		43557AA6213D77EE001538FA /* Osiris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Osiris.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		43557AA9213D77EE001538FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		43557AAB213D77EE001538FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		43557AAE213D77EE001538FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		43557AB0213D77EF001538FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		43557AB3213D77EF001538FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		43557AB5213D77EF001538FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		81ACA724213E8EFD00DC23A0 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
-		81ACA725213E8EFD00DC23A0 /* Osiris.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Osiris.swift; sourceTree = "<group>"; };
-		81ACA726213E8EFD00DC23A0 /* OsirisShaderBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsirisShaderBridge.h; sourceTree = "<group>"; };
-		81ACA727213E8EFD00DC23A0 /* MathLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathLibrary.swift; sourceTree = "<group>"; };
+		81ACA6F8213E828A00DC23A0 /* Osiris (MacOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Osiris (MacOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81ACA6FB213E828A00DC23A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		81ACA6FD213E828A00DC23A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		81ACA6FF213E828B00DC23A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		81ACA702213E828B00DC23A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		81ACA704213E828B00DC23A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81ACA705213E828B00DC23A0 /* Osiris__MacOS_.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Osiris__MacOS_.entitlements; sourceTree = "<group>"; };
+		81ACA71C213E8EDA00DC23A0 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		81ACA71D213E8EDA00DC23A0 /* Osiris.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Osiris.swift; sourceTree = "<group>"; };
+		81ACA71E213E8EDA00DC23A0 /* OsirisShaderBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsirisShaderBridge.h; sourceTree = "<group>"; };
+		81ACA71F213E8EDA00DC23A0 /* MathLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathLibrary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		43557AA3213D77EE001538FA /* Frameworks */ = {
+		81ACA6F5213E828A00DC23A0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,43 +41,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		43557A9D213D77EE001538FA = {
+		81ACA6EF213E828A00DC23A0 = {
 			isa = PBXGroup;
 			children = (
-				43557AA8213D77EE001538FA /* Osiris */,
-				43557AA7213D77EE001538FA /* Products */,
+				81ACA6FA213E828A00DC23A0 /* Osiris (MacOS) */,
+				81ACA6F9213E828A00DC23A0 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		43557AA7213D77EE001538FA /* Products */ = {
+		81ACA6F9213E828A00DC23A0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				43557AA6213D77EE001538FA /* Osiris.app */,
+				81ACA6F8213E828A00DC23A0 /* Osiris (MacOS).app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		43557AA8213D77EE001538FA /* Osiris */ = {
+		81ACA6FA213E828A00DC23A0 /* Osiris (MacOS) */ = {
 			isa = PBXGroup;
 			children = (
-				43557AA9213D77EE001538FA /* AppDelegate.swift */,
-				43557AAB213D77EE001538FA /* ViewController.swift */,
-				43557AAD213D77EE001538FA /* Main.storyboard */,
-				81ACA723213E8EFD00DC23A0 /* Metal basic */,
-				43557AB0213D77EF001538FA /* Assets.xcassets */,
-				43557AB2213D77EF001538FA /* LaunchScreen.storyboard */,
-				43557AB5213D77EF001538FA /* Info.plist */,
+				81ACA6FB213E828A00DC23A0 /* AppDelegate.swift */,
+				81ACA6FD213E828A00DC23A0 /* ViewController.swift */,
+				81ACA71B213E8EDA00DC23A0 /* Metal basic */,
+				81ACA6FF213E828B00DC23A0 /* Assets.xcassets */,
+				81ACA701213E828B00DC23A0 /* Main.storyboard */,
+				81ACA704213E828B00DC23A0 /* Info.plist */,
+				81ACA705213E828B00DC23A0 /* Osiris__MacOS_.entitlements */,
 			);
-			path = Osiris;
+			path = "Osiris (MacOS)";
 			sourceTree = "<group>";
 		};
-		81ACA723213E8EFD00DC23A0 /* Metal basic */ = {
+		81ACA71B213E8EDA00DC23A0 /* Metal basic */ = {
 			isa = PBXGroup;
 			children = (
-				81ACA724213E8EFD00DC23A0 /* Shaders.metal */,
-				81ACA725213E8EFD00DC23A0 /* Osiris.swift */,
-				81ACA726213E8EFD00DC23A0 /* OsirisShaderBridge.h */,
-				81ACA727213E8EFD00DC23A0 /* MathLibrary.swift */,
+				81ACA71C213E8EDA00DC23A0 /* Shaders.metal */,
+				81ACA71D213E8EDA00DC23A0 /* Osiris.swift */,
+				81ACA71E213E8EDA00DC23A0 /* OsirisShaderBridge.h */,
+				81ACA71F213E8EDA00DC23A0 /* MathLibrary.swift */,
 			);
 			name = "Metal basic";
 			path = "../../Metal basic";
@@ -87,39 +86,39 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		43557AA5213D77EE001538FA /* Osiris */ = {
+		81ACA6F7213E828A00DC23A0 /* Osiris (MacOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43557AB8213D77EF001538FA /* Build configuration list for PBXNativeTarget "Osiris" */;
+			buildConfigurationList = 81ACA708213E828B00DC23A0 /* Build configuration list for PBXNativeTarget "Osiris (MacOS)" */;
 			buildPhases = (
-				43557AA2213D77EE001538FA /* Sources */,
-				43557AA3213D77EE001538FA /* Frameworks */,
-				43557AA4213D77EE001538FA /* Resources */,
+				81ACA6F4213E828A00DC23A0 /* Sources */,
+				81ACA6F5213E828A00DC23A0 /* Frameworks */,
+				81ACA6F6213E828A00DC23A0 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Osiris;
-			productName = Osiris;
-			productReference = 43557AA6213D77EE001538FA /* Osiris.app */;
+			name = "Osiris (MacOS)";
+			productName = "Osiris (MacOS)";
+			productReference = 81ACA6F8213E828A00DC23A0 /* Osiris (MacOS).app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		43557A9E213D77EE001538FA /* Project object */ = {
+		81ACA6F0213E828A00DC23A0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = DC;
 				TargetAttributes = {
-					43557AA5213D77EE001538FA = {
+					81ACA6F7213E828A00DC23A0 = {
 						CreatedOnToolsVersion = 10.0;
 					};
 				};
 			};
-			buildConfigurationList = 43557AA1213D77EE001538FA /* Build configuration list for PBXProject "Osiris" */;
+			buildConfigurationList = 81ACA6F3213E828A00DC23A0 /* Build configuration list for PBXProject "Osiris (MacOS)" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -127,65 +126,56 @@
 				en,
 				Base,
 			);
-			mainGroup = 43557A9D213D77EE001538FA;
-			productRefGroup = 43557AA7213D77EE001538FA /* Products */;
+			mainGroup = 81ACA6EF213E828A00DC23A0;
+			productRefGroup = 81ACA6F9213E828A00DC23A0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				43557AA5213D77EE001538FA /* Osiris */,
+				81ACA6F7213E828A00DC23A0 /* Osiris (MacOS) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		43557AA4213D77EE001538FA /* Resources */ = {
+		81ACA6F6213E828A00DC23A0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43557AB4213D77EF001538FA /* LaunchScreen.storyboard in Resources */,
-				43557AB1213D77EF001538FA /* Assets.xcassets in Resources */,
-				43557AAF213D77EE001538FA /* Main.storyboard in Resources */,
+				81ACA700213E828B00DC23A0 /* Assets.xcassets in Resources */,
+				81ACA703213E828B00DC23A0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		43557AA2213D77EE001538FA /* Sources */ = {
+		81ACA6F4213E828A00DC23A0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81ACA729213E8EFD00DC23A0 /* Osiris.swift in Sources */,
-				81ACA728213E8EFD00DC23A0 /* Shaders.metal in Sources */,
-				43557AAC213D77EE001538FA /* ViewController.swift in Sources */,
-				43557AAA213D77EE001538FA /* AppDelegate.swift in Sources */,
-				81ACA72A213E8EFD00DC23A0 /* MathLibrary.swift in Sources */,
+				81ACA721213E8EDB00DC23A0 /* Osiris.swift in Sources */,
+				81ACA720213E8EDB00DC23A0 /* Shaders.metal in Sources */,
+				81ACA6FE213E828A00DC23A0 /* ViewController.swift in Sources */,
+				81ACA6FC213E828A00DC23A0 /* AppDelegate.swift in Sources */,
+				81ACA722213E8EDB00DC23A0 /* MathLibrary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		43557AAD213D77EE001538FA /* Main.storyboard */ = {
+		81ACA701213E828B00DC23A0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				43557AAE213D77EE001538FA /* Base */,
+				81ACA702213E828B00DC23A0 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		43557AB2213D77EF001538FA /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				43557AB3213D77EF001538FA /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		43557AB6213D77EF001538FA /* Debug */ = {
+		81ACA706213E828B00DC23A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -217,7 +207,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -236,16 +226,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		43557AB7213D77EF001538FA /* Release */ = {
+		81ACA707213E828B00DC23A0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -277,7 +267,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -290,75 +280,76 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		43557AB9213D77EF001538FA /* Debug */ = {
+		81ACA709213E828B00DC23A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Osiris (MacOS)/Osiris__MacOS_.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 5A88JF7M74;
-				INFOPLIST_FILE = Osiris/Info.plist;
+				INFOPLIST_FILE = "Osiris (MacOS)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
+					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = DC.Osiris;
+				PRODUCT_BUNDLE_IDENTIFIER = "DC.Osiris--MacOS-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Osiris (MacOS)/Metal basic/OsirisShaderBridge.h";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		43557ABA213D77EF001538FA /* Release */ = {
+		81ACA70A213E828B00DC23A0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Osiris (MacOS)/Osiris__MacOS_.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 5A88JF7M74;
-				INFOPLIST_FILE = Osiris/Info.plist;
+				INFOPLIST_FILE = "Osiris (MacOS)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
+					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = DC.Osiris;
+				PRODUCT_BUNDLE_IDENTIFIER = "DC.Osiris--MacOS-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Osiris (MacOS)/Metal basic/OsirisShaderBridge.h";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		43557AA1213D77EE001538FA /* Build configuration list for PBXProject "Osiris" */ = {
+		81ACA6F3213E828A00DC23A0 /* Build configuration list for PBXProject "Osiris (MacOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				43557AB6213D77EF001538FA /* Debug */,
-				43557AB7213D77EF001538FA /* Release */,
+				81ACA706213E828B00DC23A0 /* Debug */,
+				81ACA707213E828B00DC23A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43557AB8213D77EF001538FA /* Build configuration list for PBXNativeTarget "Osiris" */ = {
+		81ACA708213E828B00DC23A0 /* Build configuration list for PBXNativeTarget "Osiris (MacOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				43557AB9213D77EF001538FA /* Debug */,
-				43557ABA213D77EF001538FA /* Release */,
+				81ACA709213E828B00DC23A0 /* Debug */,
+				81ACA70A213E828B00DC23A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 43557A9E213D77EE001538FA /* Project object */;
+	rootObject = 81ACA6F0213E828A00DC23A0 /* Project object */;
 }
