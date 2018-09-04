@@ -12,9 +12,10 @@
 		43557AAF213D77EE001538FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43557AAD213D77EE001538FA /* Main.storyboard */; };
 		43557AB1213D77EF001538FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43557AB0213D77EF001538FA /* Assets.xcassets */; };
 		43557AB4213D77EF001538FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43557AB2213D77EF001538FA /* LaunchScreen.storyboard */; };
-		81ACA728213E8EFD00DC23A0 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 81ACA724213E8EFD00DC23A0 /* Shaders.metal */; };
-		81ACA729213E8EFD00DC23A0 /* Osiris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACA725213E8EFD00DC23A0 /* Osiris.swift */; };
-		81ACA72A213E8EFD00DC23A0 /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACA727213E8EFD00DC23A0 /* MathLibrary.swift */; };
+		43557AC1213D7954001538FA /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 43557ABE213D7954001538FA /* Shaders.metal */; };
+		43557AC2213D7954001538FA /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43557ABF213D7954001538FA /* MathLibrary.swift */; };
+		43557AC3213D7954001538FA /* Osiris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43557AC0213D7954001538FA /* Osiris.swift */; };
+		43788558213EC3AE008B88B0 /* ray.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43788557213EC3AD008B88B0 /* ray.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,10 +26,11 @@
 		43557AB0213D77EF001538FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43557AB3213D77EF001538FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43557AB5213D77EF001538FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		81ACA724213E8EFD00DC23A0 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
-		81ACA725213E8EFD00DC23A0 /* Osiris.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Osiris.swift; sourceTree = "<group>"; };
-		81ACA726213E8EFD00DC23A0 /* OsirisShaderBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsirisShaderBridge.h; sourceTree = "<group>"; };
-		81ACA727213E8EFD00DC23A0 /* MathLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathLibrary.swift; sourceTree = "<group>"; };
+		43557ABE213D7954001538FA /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		43557ABF213D7954001538FA /* MathLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathLibrary.swift; sourceTree = "<group>"; };
+		43557AC0213D7954001538FA /* Osiris.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Osiris.swift; sourceTree = "<group>"; };
+		43557AC4213D797E001538FA /* OsirisShaderBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OsirisShaderBridge.h; sourceTree = "<group>"; };
+		43788557213EC3AD008B88B0 /* ray.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ray.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +66,8 @@
 				43557AA9213D77EE001538FA /* AppDelegate.swift */,
 				43557AAB213D77EE001538FA /* ViewController.swift */,
 				43557AAD213D77EE001538FA /* Main.storyboard */,
-				81ACA723213E8EFD00DC23A0 /* Metal basic */,
+				43788557213EC3AD008B88B0 /* ray.jpg */,
+				43557ABD213D7954001538FA /* Metal basic */,
 				43557AB0213D77EF001538FA /* Assets.xcassets */,
 				43557AB2213D77EF001538FA /* LaunchScreen.storyboard */,
 				43557AB5213D77EF001538FA /* Info.plist */,
@@ -72,16 +75,15 @@
 			path = Osiris;
 			sourceTree = "<group>";
 		};
-		81ACA723213E8EFD00DC23A0 /* Metal basic */ = {
+		43557ABD213D7954001538FA /* Metal basic */ = {
 			isa = PBXGroup;
 			children = (
-				81ACA724213E8EFD00DC23A0 /* Shaders.metal */,
-				81ACA725213E8EFD00DC23A0 /* Osiris.swift */,
-				81ACA726213E8EFD00DC23A0 /* OsirisShaderBridge.h */,
-				81ACA727213E8EFD00DC23A0 /* MathLibrary.swift */,
+				43557ABE213D7954001538FA /* Shaders.metal */,
+				43557ABF213D7954001538FA /* MathLibrary.swift */,
+				43557AC0213D7954001538FA /* Osiris.swift */,
+				43557AC4213D797E001538FA /* OsirisShaderBridge.h */,
 			);
-			name = "Metal basic";
-			path = "../../Metal basic";
+			path = "Metal basic";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43557AB4213D77EF001538FA /* LaunchScreen.storyboard in Resources */,
+				43788558213EC3AE008B88B0 /* ray.jpg in Resources */,
 				43557AB1213D77EF001538FA /* Assets.xcassets in Resources */,
 				43557AAF213D77EE001538FA /* Main.storyboard in Resources */,
 			);
@@ -155,11 +158,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81ACA729213E8EFD00DC23A0 /* Osiris.swift in Sources */,
-				81ACA728213E8EFD00DC23A0 /* Shaders.metal in Sources */,
+				43557AC1213D7954001538FA /* Shaders.metal in Sources */,
 				43557AAC213D77EE001538FA /* ViewController.swift in Sources */,
 				43557AAA213D77EE001538FA /* AppDelegate.swift in Sources */,
-				81ACA72A213E8EFD00DC23A0 /* MathLibrary.swift in Sources */,
+				43557AC3213D7954001538FA /* Osiris.swift in Sources */,
+				43557AC2213D7954001538FA /* MathLibrary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,7 +315,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = DC.Osiris;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Osiris/Metal basic/OsirisShaderBridge.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -331,7 +334,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = DC.Osiris;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Osiris/Metal basic/OsirisShaderBridge.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -29,7 +29,10 @@ extension ViewController {
         view.addSubview(metalView)
     }
     func renderViews() {
-        osiris.process()
+        guard let image = UIImage(named: "ray.jpg") else {
+            return
+        }
+        osiris.processImage(image)
     }
 }
 
@@ -37,7 +40,7 @@ extension ViewController {
     
     func makeMetalView() -> MTKView {
         let metal = MTKView(frame: view.bounds)
-        metal.clearColor = MTLClearColorMake(0, 0, 0, 1)
+        metal.clearColor = MTLClearColorMake(0, 0, 0, 0)
         return metal
     }
     

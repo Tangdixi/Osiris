@@ -22,11 +22,13 @@ class Osiris: NSObject {
     
     var shouldProcess: Bool = false
     var pixelFormat: MTLPixelFormat
-    var viewportSize: vector_uint2?
+    var viewportSize: CGSize
+    var texture: MTLTexture?
+    var sampler: MTLSamplerState?
     
     init(metalView: MTKView) {
         self.pixelFormat = metalView.colorPixelFormat
-//        self.viewportSize = vector2(UInt32(metalView.drawableSize.width), UInt32(metalView.drawableSize.height))
+        self.viewportSize = metalView.drawableSize
         super.init()
         
         metalView.delegate = self
@@ -35,14 +37,44 @@ class Osiris: NSObject {
 }
 
 extension Osiris {
-    func process() {
+    func processImage(_ image:UIImage) {
         shouldProcess = true
+        
+        // Texture
+        if texture == nil {
+            let textureLoader = MTKTextureLoader(device: device)
+            
+            guard let cgImage = image.cgImage else {
+                fatalError("Load image fail")
+            }
+            let options: [MTKTextureLoader.Option: Any] = [
+                .origin: MTKTextureLoader.Origin.topLeft,
+                .SRGB: false,
+                ]
+            guard let texture = try? textureLoader.newTexture(cgImage: cgImage, options:options) else {
+                fatalError("Load texture fail")
+            }
+            self.texture = texture
+        }
+        // Sampler
+        if sampler == nil {
+            let samplerDescriptor = MTLSamplerDescriptor()
+            samplerDescriptor.mipFilter = .linear
+            samplerDescriptor.maxAnisotropy = 8
+
+            guard let sampler = device.makeSamplerState(descriptor: samplerDescriptor) else {
+                fatalError("Create sampler fail")
+            }
+            
+            self.sampler = sampler
+        }
     }
 }
 
 extension Osiris: MTKViewDelegate {
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-//        viewportSize = vector2(UInt32(view.drawableSize.width), UInt32(view.drawableSize.height))
+        viewportSize = view.drawableSize
+        shouldProcess = true
     }
     func draw(in view: MTKView) {
         
@@ -53,15 +85,31 @@ extension Osiris: MTKViewDelegate {
         guard let renderPassDescriptor = view.currentRenderPassDescriptor else {
             fatalError("Invalid render pass descriptor in \(view)")
         }
+        
         guard let commandBuffer = commandQueue.makeCommandBuffer() else {
             fatalError("Create command buffer fail")
         }
         guard let renderCommandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {
             fatalError("Create render command encoder fail")
         }
-
+        
+        let viewPort = MTLViewport(originX: 0, originY: 0, width: Double(viewportSize.width), height: Double(viewportSize.height), znear: -1, zfar: 1)
+        renderCommandEncoder.setViewport(viewPort)
         renderCommandEncoder.setRenderPipelineState(renderPipelineState)
+        
+        // Vertex
         renderCommandEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: Int(BufferIndexVertex.rawValue))
+        
+        // Texture
+        if let texture = texture {
+            renderCommandEncoder.setFragmentTexture(texture, index: 0)
+        }
+        
+        // Sampler
+        if let sampler = sampler {
+            renderCommandEncoder.setFragmentSamplerState(sampler, index: 0)
+        }
+        
         renderCommandEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 6)
         renderCommandEncoder.endEncoding()
         
@@ -72,17 +120,21 @@ extension Osiris: MTKViewDelegate {
         }
         commandBuffer.present(drawable)
         commandBuffer.commit()
+        
+        shouldProcess = false
     }
 }
 
 // MARK: Lazy Loading
 extension Osiris {
+    
     func makeDevice() -> MTLDevice {
         guard let device = MTLCreateSystemDefaultDevice() else {
             fatalError("Metal is not supported in this device")
         }
         return device
     }
+    
     func makeCommandQueue() -> MTLCommandQueue {
         guard let commandQueue = device.makeCommandQueue() else {
             fatalError("Create command queue fail")
@@ -92,15 +144,16 @@ extension Osiris {
     
     func makeVertexBuffer() -> MTLBuffer {
         var vertices = [
-            Vertexs(position: float3(0.5, -0.5, 0.0), uv: float2(1.0, 1.0)),
-            Vertexs(position: float3(-0.5, -0.5, 0.0), uv: float2(0.0, 1.0)),
-            Vertexs(position: float3(-0.5, 0.5, 0.0), uv: float2(0.0, 0.0)),
-            Vertexs(position: float3(0.5, -0.5, 0.0), uv: float2(1.0, 1.0)),
-            Vertexs(position: float3(-0.5, 0.5, 0.0), uv: float2(0.0, 0.0)),
-            Vertexs(position: float3(0.5, 0.5, 0.0), uv: float2(1.0, 0.0))
+            Vertex(position: float4(1.0, -1.0, 0.0, 1.0), uv: float2(1.0, 1.0)),
+            Vertex(position: float4(-1.0, -1.0, 0.0, 1.0), uv: float2(0.0, 1.0)),
+            Vertex(position: float4(-1.0, 1.0, 0.0, 1.0), uv: float2(0.0, 0.0)),
+            Vertex(position: float4(1.0, -1.0, 0.0, 1.0), uv: float2(1.0, 1.0)),
+            Vertex(position: float4(-1.0, 1.0, 0.0, 1.0), uv: float2(0.0, 0.0)),
+            Vertex(position: float4(1.0, 1.0, 0.0, 1.0), uv: float2(1.0, 0.0)),
         ]
-        guard let vertexBuffer = device.makeBuffer(bytes: &vertices, length: MemoryLayout<Vertexs>.stride * vertices.count, options: []) else {
-            fatalError("Create vertex fail")
+        
+        guard let vertexBuffer = device.makeBuffer(bytes: &vertices, length: MemoryLayout<Vertex>.stride * vertices.count, options: .storageModeShared) else {
+            fatalError("Create vertex buffer faile")
         }
         return vertexBuffer
     }

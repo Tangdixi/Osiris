@@ -18,9 +18,9 @@ typedef vector_float3 float3;
 typedef vector_float4 float4;
 
 typedef struct {
-    float3 position;
+    float4 position;
     float2 uv;
-} Vertexs;
+} Vertex;
 
 typedef struct {
     float4x4 modelMatrix;

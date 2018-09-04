@@ -15,10 +15,10 @@ struct VertexOut {
     float2 uv;
 };
 
-vertex VertexOut vertex_main(constant Vertexs *vertices [[buffer(BufferIndexVertex)]],
+vertex VertexOut vertex_main(constant Vertex *vertices [[buffer(BufferIndexVertex)]],
                              const uint id [[vertex_id]]) {
     VertexOut vertexOut;
-    vertexOut.position = float4(vertices[id].position, 1);
+    vertexOut.position = vertices[id].position;
     vertexOut.uv = vertices[id].uv;
     return vertexOut;
 }
@@ -26,7 +26,7 @@ vertex VertexOut vertex_main(constant Vertexs *vertices [[buffer(BufferIndexVert
 fragment float4 fragment_main(const VertexOut in [[stage_in]],
                               texture2d<float> baseColorTexture [[texture(BaseColorTexture)]],
                               sampler textureSampler [[sampler(0)]]) {
-//    float3 baseColor = baseColorTexture.sample(textureSampler, in.uv).rgb;
-    return float4(1,1,1,1);
+    float3 baseColor = baseColorTexture.sample(textureSampler, in.uv).rgb;
+    return float4(baseColor,1);
 }
 
