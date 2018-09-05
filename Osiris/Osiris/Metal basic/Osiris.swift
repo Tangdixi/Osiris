@@ -13,10 +13,12 @@ class Osiris: NSObject {
     
     typealias DrawPhase = (MTLRenderCommandEncoder)->Void
     
+    lazy var library: MTLLibrary = makeLibrary()
     lazy var device: MTLDevice = makeDevice()
     lazy var commandQueue: MTLCommandQueue = makeCommandQueue()
     lazy var vertexBuffer: MTLBuffer = makeVertexBuffer()
     lazy var renderPipelineState: MTLRenderPipelineState = makeRenderPipelineState()
+    
     lazy var textureCache: CVMetalTextureCache = makeTextureCache()
     lazy var sampler: MTLSamplerState = makeSampler()
     
@@ -25,7 +27,10 @@ class Osiris: NSObject {
     var shouldProcess: Bool = false
     var pixelFormat: MTLPixelFormat
     var viewportSize: CGSize
-    var texture: MTLTexture?
+    var sourceTexture: MTLTexture?
+    var destinationTexture: MTLTexture?
+    
+    var filter: MTLComputePipelineState?
     
     init(metalView: MTKView) {
         self.pixelFormat = metalView.colorPixelFormat
@@ -41,7 +46,7 @@ extension Osiris {
     
     func processImage(_ image:UIImage) {
         // Texture
-        if texture == nil {
+        if sourceTexture == nil {
             let textureLoader = MTKTextureLoader(device: device)
             
             guard let cgImage = image.cgImage else {
@@ -54,11 +59,12 @@ extension Osiris {
             guard let texture = try? textureLoader.newTexture(cgImage: cgImage, options:options) else {
                 fatalError("Load texture fail")
             }
-            self.texture = texture
+            self.sourceTexture = texture
         }
         
         shouldProcess = true
     }
+    
     func processVideo(_ pixelBuffer: CVPixelBuffer) {
         
         let width = CVPixelBufferGetWidth(pixelBuffer)
@@ -73,9 +79,35 @@ extension Osiris {
             fatalError()
         }
         
-        texture = CVMetalTextureGetTexture(result)
+        sourceTexture = CVMetalTextureGetTexture(result)
         viewportSize = CGSize(width: width, height: height)
         shouldProcess = true
+    }
+    
+    func grayFilter() -> Osiris {
+        
+        if filter == nil {
+            guard let kernelFunction = library.makeFunction(name: "grayKernel"), let computePipelineState = try? device.makeComputePipelineState(function: kernelFunction) else {
+                fatalError("Create filter fail")
+            }
+            self.filter = computePipelineState
+        }
+        
+        // Do nothing
+        guard let sourceTexture = sourceTexture else {
+            return self
+        }
+        if destinationTexture == nil {
+            let destinationTextureDescriptor = MTLTextureDescriptor()
+            destinationTextureDescriptor.pixelFormat = pixelFormat
+            destinationTextureDescriptor.width = sourceTexture.width
+            destinationTextureDescriptor.height = sourceTexture.height
+            destinationTextureDescriptor.usage = [.shaderRead, .shaderWrite]
+            
+            self.destinationTexture = device.makeTexture(descriptor: destinationTextureDescriptor)
+        }
+        
+        return self
     }
 }
 
@@ -97,6 +129,31 @@ extension Osiris: MTKViewDelegate {
         guard let commandBuffer = commandQueue.makeCommandBuffer() else {
             fatalError("Create command buffer fail")
         }
+        
+        // Compute pipeline
+        if let filter = filter {
+            guard let computeCommandEncoder = commandBuffer.makeComputeCommandEncoder() else {
+                fatalError("Create compute command buffer fail")
+            }
+            computeCommandEncoder.setComputePipelineState(filter)
+            computeCommandEncoder.setTexture(sourceTexture, index: Int(TextureIndexSource.rawValue))
+            computeCommandEncoder.setTexture(destinationTexture, index: Int(TextureIndexDestination.rawValue))
+            
+            guard let sourceTexture = sourceTexture else {
+                fatalError()
+            }
+            
+            let group = MTLSize(width: 16, height: 16, depth: 1)
+            var grid = MTLSize()
+            grid.width = (sourceTexture.width + group.width - 1) / group.width
+            grid.height = (sourceTexture.height + group.height - 1) / group.height
+            grid.depth = 1
+            
+            computeCommandEncoder.dispatchThreadgroups(grid, threadsPerThreadgroup: group)
+            computeCommandEncoder.endEncoding()
+        }
+        
+        // Render pipeline
         guard let renderCommandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {
             fatalError("Create render command encoder fail")
         }
@@ -109,8 +166,10 @@ extension Osiris: MTKViewDelegate {
         renderCommandEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: Int(BufferIndexVertex.rawValue))
         
         // Texture
-        if let texture = texture {
+        if let texture = destinationTexture {
             renderCommandEncoder.setFragmentTexture(texture, index: 0)
+        } else {
+            renderCommandEncoder.setFragmentTexture(sourceTexture, index: 0)
         }
         
         // Sampler
@@ -129,7 +188,7 @@ extension Osiris: MTKViewDelegate {
         
         // Reset resources
         shouldProcess = false
-        texture = nil
+        sourceTexture = nil
     }
 }
 
@@ -167,10 +226,7 @@ extension Osiris {
     }
     
     func makeRenderPipelineState() -> MTLRenderPipelineState {
-        guard let library = device.makeDefaultLibrary() else {
-            fatalError("Metal need a shader file")
-        }
-        
+
         let vertexFunction = library.makeFunction(name: "vertex_main")
         let fragmentFunction = library.makeFunction(name: "fragment_main")
         
@@ -203,5 +259,12 @@ extension Osiris {
             fatalError("Create sampler fail")
         }
         return sampler
+    }
+    
+    func makeLibrary() -> MTLLibrary {
+        guard let library = device.makeDefaultLibrary() else {
+            fatalError("Metal need a shader file")
+        }
+        return library
     }
 }

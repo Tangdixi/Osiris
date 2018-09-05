@@ -40,7 +40,8 @@ typedef enum {
 } Attributes;
 
 typedef enum {
-    BaseColorTexture = 0,
-} Textures;
+    TextureIndexSource = 0,
+    TextureIndexDestination = 1
+} TextureIndice;
 
 #endif /* OsirisShaderBridge_h */

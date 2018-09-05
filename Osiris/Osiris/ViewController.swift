@@ -39,7 +39,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
         }
-        osiris.processVideo(pixelBuffer)
+        osiris.grayFilter().processVideo(pixelBuffer)
     }
 }
 
