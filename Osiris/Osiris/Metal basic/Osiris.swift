@@ -17,6 +17,8 @@ class Osiris: NSObject {
     lazy var commandQueue: MTLCommandQueue = makeCommandQueue()
     lazy var vertexBuffer: MTLBuffer = makeVertexBuffer()
     lazy var renderPipelineState: MTLRenderPipelineState = makeRenderPipelineState()
+    lazy var textureCache: CVMetalTextureCache = makeTextureCache()
+    lazy var sampler: MTLSamplerState = makeSampler()
     
     var draw: DrawPhase?
     
@@ -24,7 +26,6 @@ class Osiris: NSObject {
     var pixelFormat: MTLPixelFormat
     var viewportSize: CGSize
     var texture: MTLTexture?
-    var sampler: MTLSamplerState?
     
     init(metalView: MTKView) {
         self.pixelFormat = metalView.colorPixelFormat
@@ -37,9 +38,8 @@ class Osiris: NSObject {
 }
 
 extension Osiris {
+    
     func processImage(_ image:UIImage) {
-        shouldProcess = true
-        
         // Texture
         if texture == nil {
             let textureLoader = MTKTextureLoader(device: device)
@@ -56,18 +56,26 @@ extension Osiris {
             }
             self.texture = texture
         }
-        // Sampler
-        if sampler == nil {
-            let samplerDescriptor = MTLSamplerDescriptor()
-            samplerDescriptor.mipFilter = .linear
-            samplerDescriptor.maxAnisotropy = 8
-
-            guard let sampler = device.makeSamplerState(descriptor: samplerDescriptor) else {
-                fatalError("Create sampler fail")
-            }
-            
-            self.sampler = sampler
+        
+        shouldProcess = true
+    }
+    func processVideo(_ pixelBuffer: CVPixelBuffer) {
+        
+        let width = CVPixelBufferGetWidth(pixelBuffer)
+        let height = CVPixelBufferGetHeight(pixelBuffer)
+        
+        var tempTexture: CVMetalTexture?
+        let status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache, pixelBuffer, nil, pixelFormat, width, height, 0, &tempTexture)
+        guard status == kCVReturnSuccess else {
+            fatalError("Create CVMetalTexture faile")
         }
+        guard let result = tempTexture else {
+            fatalError()
+        }
+        
+        texture = CVMetalTextureGetTexture(result)
+        viewportSize = CGSize(width: width, height: height)
+        shouldProcess = true
     }
 }
 
@@ -106,9 +114,7 @@ extension Osiris: MTKViewDelegate {
         }
         
         // Sampler
-        if let sampler = sampler {
-            renderCommandEncoder.setFragmentSamplerState(sampler, index: 0)
-        }
+        renderCommandEncoder.setFragmentSamplerState(sampler, index: 0)
         
         renderCommandEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 6)
         renderCommandEncoder.endEncoding()
@@ -121,7 +127,9 @@ extension Osiris: MTKViewDelegate {
         commandBuffer.present(drawable)
         commandBuffer.commit()
         
+        // Reset resources
         shouldProcess = false
+        texture = nil
     }
 }
 
@@ -175,5 +183,25 @@ extension Osiris {
             fatalError("Create pipeline fail")
         }
         return pipelineState
+    }
+    
+    func makeTextureCache() -> CVMetalTextureCache {
+        var cache: CVMetalTextureCache?
+        CVMetalTextureCacheCreate(nil, nil, device, nil, &cache)
+        guard let result = cache else {
+            fatalError("Cannot create texture cache")
+        }
+        return result
+    }
+    
+    func makeSampler() -> MTLSamplerState {
+        let samplerDescriptor = MTLSamplerDescriptor()
+        samplerDescriptor.mipFilter = .linear
+        samplerDescriptor.maxAnisotropy = 8
+        
+        guard let sampler = device.makeSamplerState(descriptor: samplerDescriptor) else {
+            fatalError("Create sampler fail")
+        }
+        return sampler
     }
 }
