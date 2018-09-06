@@ -35,7 +35,7 @@ constant float3 kRec709Luma = float3(0.2126, 0.7152, 0.0722);
 kernel void grayKernel(texture2d<float, access::read> sourceTexture [[texture(TextureIndexSource)]],
                        texture2d<float, access::write> destTexture [[texture(TextureIndexDestination)]],
                        uint2 grid [[thread_position_in_grid]]) {
-    if(grid.x > destTexture.get_width() || grid.y > destTexture.get_height()) {
+    if(grid.x >= destTexture.get_width() || grid.y >= destTexture.get_height()) {
         return;
     }
     float4 color = sourceTexture.read(grid);

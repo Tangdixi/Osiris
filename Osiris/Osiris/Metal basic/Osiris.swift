@@ -143,13 +143,18 @@ extension Osiris: MTKViewDelegate {
                 fatalError()
             }
             
-            let group = MTLSize(width: 16, height: 16, depth: 1)
-            var grid = MTLSize()
-            grid.width = (sourceTexture.width + group.width - 1) / group.width
-            grid.height = (sourceTexture.height + group.height - 1) / group.height
-            grid.depth = 1
+            // Optimize threads for GPU
+            let width = filter.threadExecutionWidth
+            let height = filter.maxTotalThreadsPerThreadgroup / width
+            let threadsPerThreadgroup = MTLSize(width: width, height: height, depth: 1)
             
-            computeCommandEncoder.dispatchThreadgroups(grid, threadsPerThreadgroup: group)
+            let threadgroupsPerGrid = MTLSize(width: (sourceTexture.width + width - 1)/width,
+                                              height: (sourceTexture.height + height - 1)/height,
+                                              depth: 1)
+            
+            computeCommandEncoder.dispatchThreadgroups(threadgroupsPerGrid, threadsPerThreadgroup:
+                threadsPerThreadgroup)
+            
             computeCommandEncoder.endEncoding()
         }
         
