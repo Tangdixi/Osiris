@@ -42,3 +42,14 @@ kernel void grayKernel(texture2d<float, access::read> sourceTexture [[texture(Te
     float gray = dot(color.rgb, kRec709Luma);
     destTexture.write(float4(gray, gray, gray, 1.0), grid);
 }
+
+kernel void reverseKernel(texture2d<float, access::read> sourceTexture [[texture(TextureIndexSource)]],
+                       texture2d<float, access::write> destTexture [[texture(TextureIndexDestination)]],
+                       uint2 grid [[thread_position_in_grid]]) {
+    if(grid.x >= destTexture.get_width() || grid.y >= destTexture.get_height()) {
+        return;
+    }
+    float4 color = sourceTexture.read(grid);
+    float4 final = float4((1-color.rgb), 1.0);
+    destTexture.write(final, grid);
+}

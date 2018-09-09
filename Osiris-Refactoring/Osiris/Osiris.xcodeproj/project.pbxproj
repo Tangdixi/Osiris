@@ -7,38 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		43557AAA213D77EE001538FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43557AA9213D77EE001538FA /* AppDelegate.swift */; };
-		43557AAC213D77EE001538FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43557AAB213D77EE001538FA /* ViewController.swift */; };
-		43557AAF213D77EE001538FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43557AAD213D77EE001538FA /* Main.storyboard */; };
-		43557AB1213D77EF001538FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43557AB0213D77EF001538FA /* Assets.xcassets */; };
-		43557AB4213D77EF001538FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43557AB2213D77EF001538FA /* LaunchScreen.storyboard */; };
-		43557AC1213D7954001538FA /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 43557ABE213D7954001538FA /* Shaders.metal */; };
-		43557AC2213D7954001538FA /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43557ABF213D7954001538FA /* MathLibrary.swift */; };
-		43557AC3213D7954001538FA /* Osiris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43557AC0213D7954001538FA /* Osiris.swift */; };
-		8166EF07214543160022DEE6 /* Osiris.Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8166EF06214543160022DEE6 /* Osiris.Camera.swift */; };
-		8166EF33214687230022DEE6 /* example.png in Resources */ = {isa = PBXBuildFile; fileRef = 8166EF32214687230022DEE6 /* example.png */; };
-		81D8E65E2143BEE400B395FD /* Osiris.Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D8E65D2143BEE400B395FD /* Osiris.Filter.swift */; };
+		4378855D214AC17A008B88B0 /* Osiris.Renderer.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4378855C214AC17A008B88B0 /* Osiris.Renderer.metal */; };
+		8166EF152145456C0022DEE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8166EF142145456C0022DEE6 /* AppDelegate.swift */; };
+		8166EF172145456C0022DEE6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8166EF162145456C0022DEE6 /* ViewController.swift */; };
+		8166EF1A2145456C0022DEE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8166EF182145456C0022DEE6 /* Main.storyboard */; };
+		8166EF1C2145456D0022DEE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8166EF1B2145456D0022DEE6 /* Assets.xcassets */; };
+		8166EF1F2145456D0022DEE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8166EF1D2145456D0022DEE6 /* LaunchScreen.storyboard */; };
+		8166EF27214545840022DEE6 /* Osiris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8166EF26214545840022DEE6 /* Osiris.swift */; };
+		8166EF2A214545B50022DEE6 /* Osiris.Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8166EF29214545B50022DEE6 /* Osiris.Filter.swift */; };
+		8166EF2D21454C2E0022DEE6 /* Filter.Brightness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8166EF2C21454C2E0022DEE6 /* Filter.Brightness.swift */; };
+		8166EF30214661DA0022DEE6 /* Osiris.Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8166EF2F214661DA0022DEE6 /* Osiris.Math.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		43557AA6213D77EE001538FA /* Osiris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Osiris.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		43557AA9213D77EE001538FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		43557AAB213D77EE001538FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		43557AAE213D77EE001538FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		43557AB0213D77EF001538FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		43557AB3213D77EF001538FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		43557AB5213D77EF001538FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		43557ABE213D7954001538FA /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
-		43557ABF213D7954001538FA /* MathLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathLibrary.swift; sourceTree = "<group>"; };
-		43557AC0213D7954001538FA /* Osiris.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Osiris.swift; sourceTree = "<group>"; };
-		43557AC4213D797E001538FA /* OsirisShaderBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OsirisShaderBridge.h; sourceTree = "<group>"; };
-		8166EF06214543160022DEE6 /* Osiris.Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Osiris.Camera.swift; sourceTree = "<group>"; };
-		8166EF32214687230022DEE6 /* example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example.png; sourceTree = "<group>"; };
-		81D8E65D2143BEE400B395FD /* Osiris.Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Osiris.Filter.swift; sourceTree = "<group>"; };
+		4378855C214AC17A008B88B0 /* Osiris.Renderer.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Osiris.Renderer.metal; sourceTree = "<group>"; };
+		8166EF112145456C0022DEE6 /* Osiris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Osiris.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8166EF142145456C0022DEE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8166EF162145456C0022DEE6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8166EF192145456C0022DEE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8166EF1B2145456D0022DEE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8166EF1E2145456D0022DEE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8166EF202145456D0022DEE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8166EF26214545840022DEE6 /* Osiris.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Osiris.swift; sourceTree = "<group>"; };
+		8166EF29214545B50022DEE6 /* Osiris.Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Osiris.Filter.swift; sourceTree = "<group>"; };
+		8166EF2C21454C2E0022DEE6 /* Filter.Brightness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.Brightness.swift; sourceTree = "<group>"; };
+		8166EF2F214661DA0022DEE6 /* Osiris.Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Osiris.Math.swift; sourceTree = "<group>"; };
+		8166EF31214662ED0022DEE6 /* Osiris_Bridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Osiris_Bridging.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		43557AA3213D77EE001538FA /* Frameworks */ = {
+		8166EF0E2145456C0022DEE6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -48,60 +46,75 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		43557A9D213D77EE001538FA = {
+		8166EF082145456C0022DEE6 = {
 			isa = PBXGroup;
 			children = (
-				43557AA8213D77EE001538FA /* Osiris */,
-				43557AA7213D77EE001538FA /* Products */,
+				8166EF132145456C0022DEE6 /* Osiris */,
+				8166EF122145456C0022DEE6 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		43557AA7213D77EE001538FA /* Products */ = {
+		8166EF122145456C0022DEE6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				43557AA6213D77EE001538FA /* Osiris.app */,
+				8166EF112145456C0022DEE6 /* Osiris.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		43557AA8213D77EE001538FA /* Osiris */ = {
+		8166EF132145456C0022DEE6 /* Osiris */ = {
 			isa = PBXGroup;
 			children = (
-				43557AA9213D77EE001538FA /* AppDelegate.swift */,
-				43557AAB213D77EE001538FA /* ViewController.swift */,
-				43557AAD213D77EE001538FA /* Main.storyboard */,
-				8166EF32214687230022DEE6 /* example.png */,
-				43557ABD213D7954001538FA /* Metal basic */,
-				43557AB0213D77EF001538FA /* Assets.xcassets */,
-				43557AB2213D77EF001538FA /* LaunchScreen.storyboard */,
-				43557AB5213D77EF001538FA /* Info.plist */,
+				8166EF142145456C0022DEE6 /* AppDelegate.swift */,
+				8166EF162145456C0022DEE6 /* ViewController.swift */,
+				8166EF28214545910022DEE6 /* Osiris */,
+				8166EF182145456C0022DEE6 /* Main.storyboard */,
+				8166EF1B2145456D0022DEE6 /* Assets.xcassets */,
+				8166EF1D2145456D0022DEE6 /* LaunchScreen.storyboard */,
+				8166EF202145456D0022DEE6 /* Info.plist */,
 			);
 			path = Osiris;
 			sourceTree = "<group>";
 		};
-		43557ABD213D7954001538FA /* Metal basic */ = {
+		8166EF28214545910022DEE6 /* Osiris */ = {
 			isa = PBXGroup;
 			children = (
-				43557ABE213D7954001538FA /* Shaders.metal */,
-				43557ABF213D7954001538FA /* MathLibrary.swift */,
-				43557AC0213D7954001538FA /* Osiris.swift */,
-				81D8E65D2143BEE400B395FD /* Osiris.Filter.swift */,
-				8166EF06214543160022DEE6 /* Osiris.Camera.swift */,
-				43557AC4213D797E001538FA /* OsirisShaderBridge.h */,
+				8166EF31214662ED0022DEE6 /* Osiris_Bridging.h */,
+				8166EF26214545840022DEE6 /* Osiris.swift */,
+				8166EF2F214661DA0022DEE6 /* Osiris.Math.swift */,
+				4378855C214AC17A008B88B0 /* Osiris.Renderer.metal */,
+				8166EF2B21454A5D0022DEE6 /* Filters */,
 			);
-			path = "Metal basic";
+			path = Osiris;
+			sourceTree = "<group>";
+		};
+		8166EF2B21454A5D0022DEE6 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				8166EF29214545B50022DEE6 /* Osiris.Filter.swift */,
+				8166EF2E21454C620022DEE6 /* Built-in Filters */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
+		8166EF2E21454C620022DEE6 /* Built-in Filters */ = {
+			isa = PBXGroup;
+			children = (
+				8166EF2C21454C2E0022DEE6 /* Filter.Brightness.swift */,
+			);
+			path = "Built-in Filters";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		43557AA5213D77EE001538FA /* Osiris */ = {
+		8166EF102145456C0022DEE6 /* Osiris */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43557AB8213D77EF001538FA /* Build configuration list for PBXNativeTarget "Osiris" */;
+			buildConfigurationList = 8166EF232145456D0022DEE6 /* Build configuration list for PBXNativeTarget "Osiris" */;
 			buildPhases = (
-				43557AA2213D77EE001538FA /* Sources */,
-				43557AA3213D77EE001538FA /* Frameworks */,
-				43557AA4213D77EE001538FA /* Resources */,
+				8166EF0D2145456C0022DEE6 /* Sources */,
+				8166EF0E2145456C0022DEE6 /* Frameworks */,
+				8166EF0F2145456C0022DEE6 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -109,25 +122,25 @@
 			);
 			name = Osiris;
 			productName = Osiris;
-			productReference = 43557AA6213D77EE001538FA /* Osiris.app */;
+			productReference = 8166EF112145456C0022DEE6 /* Osiris.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		43557A9E213D77EE001538FA /* Project object */ = {
+		8166EF092145456C0022DEE6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = DC;
 				TargetAttributes = {
-					43557AA5213D77EE001538FA = {
+					8166EF102145456C0022DEE6 = {
 						CreatedOnToolsVersion = 10.0;
 					};
 				};
 			};
-			buildConfigurationList = 43557AA1213D77EE001538FA /* Build configuration list for PBXProject "Osiris" */;
+			buildConfigurationList = 8166EF0C2145456C0022DEE6 /* Build configuration list for PBXProject "Osiris" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -135,60 +148,59 @@
 				en,
 				Base,
 			);
-			mainGroup = 43557A9D213D77EE001538FA;
-			productRefGroup = 43557AA7213D77EE001538FA /* Products */;
+			mainGroup = 8166EF082145456C0022DEE6;
+			productRefGroup = 8166EF122145456C0022DEE6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				43557AA5213D77EE001538FA /* Osiris */,
+				8166EF102145456C0022DEE6 /* Osiris */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		43557AA4213D77EE001538FA /* Resources */ = {
+		8166EF0F2145456C0022DEE6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43557AB4213D77EF001538FA /* LaunchScreen.storyboard in Resources */,
-				43557AB1213D77EF001538FA /* Assets.xcassets in Resources */,
-				8166EF33214687230022DEE6 /* example.png in Resources */,
-				43557AAF213D77EE001538FA /* Main.storyboard in Resources */,
+				8166EF1F2145456D0022DEE6 /* LaunchScreen.storyboard in Resources */,
+				8166EF1C2145456D0022DEE6 /* Assets.xcassets in Resources */,
+				8166EF1A2145456C0022DEE6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		43557AA2213D77EE001538FA /* Sources */ = {
+		8166EF0D2145456C0022DEE6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43557AC1213D7954001538FA /* Shaders.metal in Sources */,
-				81D8E65E2143BEE400B395FD /* Osiris.Filter.swift in Sources */,
-				43557AAC213D77EE001538FA /* ViewController.swift in Sources */,
-				8166EF07214543160022DEE6 /* Osiris.Camera.swift in Sources */,
-				43557AAA213D77EE001538FA /* AppDelegate.swift in Sources */,
-				43557AC3213D7954001538FA /* Osiris.swift in Sources */,
-				43557AC2213D7954001538FA /* MathLibrary.swift in Sources */,
+				8166EF172145456C0022DEE6 /* ViewController.swift in Sources */,
+				8166EF30214661DA0022DEE6 /* Osiris.Math.swift in Sources */,
+				8166EF2A214545B50022DEE6 /* Osiris.Filter.swift in Sources */,
+				8166EF2D21454C2E0022DEE6 /* Filter.Brightness.swift in Sources */,
+				8166EF152145456C0022DEE6 /* AppDelegate.swift in Sources */,
+				4378855D214AC17A008B88B0 /* Osiris.Renderer.metal in Sources */,
+				8166EF27214545840022DEE6 /* Osiris.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		43557AAD213D77EE001538FA /* Main.storyboard */ = {
+		8166EF182145456C0022DEE6 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				43557AAE213D77EE001538FA /* Base */,
+				8166EF192145456C0022DEE6 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		43557AB2213D77EF001538FA /* LaunchScreen.storyboard */ = {
+		8166EF1D2145456D0022DEE6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				43557AB3213D77EF001538FA /* Base */,
+				8166EF1E2145456D0022DEE6 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -196,7 +208,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		43557AB6213D77EF001538FA /* Debug */ = {
+		8166EF212145456D0022DEE6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -256,7 +268,7 @@
 			};
 			name = Debug;
 		};
-		43557AB7213D77EF001538FA /* Release */ = {
+		8166EF222145456D0022DEE6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -310,7 +322,7 @@
 			};
 			name = Release;
 		};
-		43557AB9213D77EF001538FA /* Debug */ = {
+		8166EF242145456D0022DEE6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -323,13 +335,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = DC.Osiris;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Osiris/Metal basic/OsirisShaderBridge.h";
+				SWIFT_OBJC_BRIDGING_HEADER = $SRCROOT/Osiris/Osiris/Osiris_Bridging.h;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		43557ABA213D77EF001538FA /* Release */ = {
+		8166EF252145456D0022DEE6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -342,7 +354,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = DC.Osiris;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Osiris/Metal basic/OsirisShaderBridge.h";
+				SWIFT_OBJC_BRIDGING_HEADER = $SRCROOT/Osiris/Osiris/Osiris_Bridging.h;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -351,25 +363,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		43557AA1213D77EE001538FA /* Build configuration list for PBXProject "Osiris" */ = {
+		8166EF0C2145456C0022DEE6 /* Build configuration list for PBXProject "Osiris" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				43557AB6213D77EF001538FA /* Debug */,
-				43557AB7213D77EF001538FA /* Release */,
+				8166EF212145456D0022DEE6 /* Debug */,
+				8166EF222145456D0022DEE6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43557AB8213D77EF001538FA /* Build configuration list for PBXNativeTarget "Osiris" */ = {
+		8166EF232145456D0022DEE6 /* Build configuration list for PBXNativeTarget "Osiris" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				43557AB9213D77EF001538FA /* Debug */,
-				43557ABA213D77EF001538FA /* Release */,
+				8166EF242145456D0022DEE6 /* Debug */,
+				8166EF252145456D0022DEE6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 43557A9E213D77EE001538FA /* Project object */;
+	rootObject = 8166EF092145456C0022DEE6 /* Project object */;
 }

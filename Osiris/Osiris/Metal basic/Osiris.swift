@@ -19,6 +19,7 @@ class Osiris: NSObject {
     lazy var vertexBuffer: MTLBuffer = makeVertexBuffer()
     lazy var renderPipelineState: MTLRenderPipelineState = makeRenderPipelineState()
     
+    // For converting sample buffer to texture
     lazy var textureCache: CVMetalTextureCache = makeTextureCache()
     lazy var sampler: MTLSamplerState = makeSampler()
     
@@ -40,9 +41,25 @@ class Osiris: NSObject {
         metalView.delegate = self
         metalView.device = device
     }
+    
+    // Refactoring
+    //
+    var filters:[Filter] = [Filter]()
+    
 }
 
 extension Osiris {
+
+    
+    
+    func filters(_ filters: [Filter]?) -> Osiris {
+        guard let filters = filters else {
+            fatalError("[Osiris] ")
+        }
+        self.filters = filters
+        return self
+    }
+    
     
     func processImage(_ image:UIImage) {
         // Texture
@@ -109,6 +126,33 @@ extension Osiris {
         
         return self
     }
+    
+    func reverseFilter() -> Osiris {
+        
+        if filter == nil {
+            guard let kernelFunction = library.makeFunction(name: "reverseKernel"), let computePipelineState = try? device.makeComputePipelineState(function: kernelFunction) else {
+                fatalError("Create filter fail")
+            }
+            self.filter = computePipelineState
+        }
+        
+        // Do nothing
+        guard let sourceTexture = sourceTexture else {
+            return self
+        }
+        if destinationTexture == nil {
+            let destinationTextureDescriptor = MTLTextureDescriptor()
+            destinationTextureDescriptor.pixelFormat = pixelFormat
+            destinationTextureDescriptor.width = sourceTexture.width
+            destinationTextureDescriptor.height = sourceTexture.height
+            destinationTextureDescriptor.usage = [.shaderRead, .shaderWrite]
+            
+            self.destinationTexture = device.makeTexture(descriptor: destinationTextureDescriptor)
+        }
+        
+        return self
+    }
+    
 }
 
 extension Osiris: MTKViewDelegate {
@@ -188,11 +232,13 @@ extension Osiris: MTKViewDelegate {
         guard let drawable = view.currentDrawable else {
             fatalError("Invalid drawable object in \(view)")
         }
+        commandBuffer.addCompletedHandler { (_) in
+            self.shouldProcess = false
+        }
         commandBuffer.present(drawable)
         commandBuffer.commit()
         
         // Reset resources
-        shouldProcess = false
         sourceTexture = nil
     }
 }

@@ -13,7 +13,10 @@ import AVFoundation
 class ViewController: UIViewController {
 
     lazy var metalView: MTKView = makeMetalView()
-    lazy var osiris: Osiris = makeOsiris()
+    lazy var metalView2: MTKView = makeMetalView()
+    
+    var osiris: Osiris!
+    var osiris2: Osiris!
     
     lazy var captureSession = makeCaptureSession()
     
@@ -31,6 +34,13 @@ class ViewController: UIViewController {
 extension ViewController {
     func setupViews() {
         view.addSubview(metalView)
+        view.addSubview(metalView2)
+        
+        osiris = makeOsiris(metalView)
+        osiris2 = makeOsiris(metalView2)
+        
+        metalView.center = CGPoint(x: view.center.x, y: 120)
+        metalView2.center = CGPoint(x: view.center.x, y: 340)
     }
 }
 
@@ -40,19 +50,20 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             return
         }
         osiris.grayFilter().processVideo(pixelBuffer)
+        osiris2.grayFilter().processVideo(pixelBuffer)
     }
 }
 
 extension ViewController {
     
     func makeMetalView() -> MTKView {
-        let metal = MTKView(frame: view.bounds)
+        let metal = MTKView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
         metal.clearColor = MTLClearColorMake(0, 0, 0, 0)
         metal.framebufferOnly = false
         return metal
     }
     
-    func makeOsiris() -> Osiris {
+    func makeOsiris(_ metalView: MTKView) -> Osiris {
         return Osiris(metalView: metalView)
     }
     
