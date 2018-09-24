@@ -1,4 +1,6 @@
 # Osiris
+![](https://raw.githubusercontent.com/Tangdixi/Osiris/develop/logo.png)
+
 Osiris is a image processing library using Metal 2, written in Swift
 
 * [Features](#Features)
