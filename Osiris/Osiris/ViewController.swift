@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     lazy var metalView: MTKView = makeMetalView()
     lazy var metalView2: MTKView = makeMetalView()
     
-    var osiris: Osiris!
+    var imageRenderer: Osiris!
     var osiris2: Osiris!
     
     lazy var captureSession = makeCaptureSession()
@@ -27,6 +27,8 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         captureSession.startRunning()
+//        osiris2.processImage(UIImage(named: "example")!)
+//        imageRenderer.processImage(UIImage(named: "example")!).presentOn(metalView: metalView)
     }
 }
 
@@ -34,13 +36,13 @@ class ViewController: UIViewController {
 extension ViewController {
     func setupViews() {
         view.addSubview(metalView)
-        view.addSubview(metalView2)
-        
-        osiris = makeOsiris(metalView)
-        osiris2 = makeOsiris(metalView2)
-        
-        metalView.center = CGPoint(x: view.center.x, y: 120)
-        metalView2.center = CGPoint(x: view.center.x, y: 340)
+//        view.addSubview(metalView2)
+//
+        imageRenderer = makeRenderer(metalView)
+//        osiris2 = makeRenderer(metalView2)
+//
+//        metalView.center = CGPoint(x: view.center.x, y: 200)
+//        metalView2.center = CGPoint(x: view.center.x, y: 400)
     }
 }
 
@@ -49,28 +51,34 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
         }
-        osiris.grayFilter().processVideo(pixelBuffer)
-        osiris2.grayFilter().processVideo(pixelBuffer)
+        imageRenderer.processVideo(pixelBuffer).presentOn(metalView: metalView)
     }
 }
 
 extension ViewController {
     
     func makeMetalView() -> MTKView {
-        let metal = MTKView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-        metal.clearColor = MTLClearColorMake(0, 0, 0, 0)
+        let metal = MTKView(frame: CGRect(x: 0, y: 0, width: 375, height: 667))
+        metal.clearColor = MTLClearColorMake(0, 0, 0, 1)
         metal.framebufferOnly = false
         return metal
     }
     
-    func makeOsiris(_ metalView: MTKView) -> Osiris {
-        return Osiris(metalView: metalView)
+    func makeRenderer(_ metalView: MTKView) -> Osiris {
+        let renderer = Osiris(label: "Image Process")
+        
+        let reverse = Filter(kernalName: "reverseKernal")
+        let luma = Filter(kernalName: "lumaKernal")
+        
+        renderer.addFilters([reverse, luma])
+        
+        return renderer
     }
     
     func makeCaptureSession() -> AVCaptureSession {
         
         let session = AVCaptureSession()
-        session.sessionPreset = .hd1920x1080
+        session.sessionPreset = .hd1280x720
         
         // Get the back camera
         guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back) else {

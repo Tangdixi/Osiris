@@ -26,30 +26,29 @@ vertex VertexOut vertex_main(constant Vertex *vertices [[buffer(BufferIndexVerte
 fragment float4 fragment_main(const VertexOut in [[stage_in]],
                               texture2d<float> baseColorTexture [[texture(TextureIndexSource)]],
                               sampler textureSampler [[sampler(0)]]) {
-    float3 baseColor = baseColorTexture.sample(textureSampler, in.uv).rgb;
-    return float4(baseColor,1);
+    return is_null_texture(baseColorTexture)? float4(0.8,0.8,0.5,1) : float4(baseColorTexture.sample(textureSampler, in.uv).rgb, 1.0);
 }
 
-constant float3 kRec709Luma = float3(0.2126, 0.7152, 0.0722);
+constant half3 kRec709Luma = half3(0.2126, 0.7152, 0.0722);
 
-kernel void grayKernel(texture2d<float, access::read> sourceTexture [[texture(TextureIndexSource)]],
-                       texture2d<float, access::write> destTexture [[texture(TextureIndexDestination)]],
-                       uint2 grid [[thread_position_in_grid]]) {
+kernel void lumaKernal(texture2d<half, access::read> sourceTexture [[texture(TextureIndexSource)]],
+                       texture2d<half, access::write> destTexture [[texture(TextureIndexDestination)]],
+                       ushort2 grid [[thread_position_in_grid]]) {
     if(grid.x >= destTexture.get_width() || grid.y >= destTexture.get_height()) {
         return;
     }
-    float4 color = sourceTexture.read(grid);
-    float gray = dot(color.rgb, kRec709Luma);
-    destTexture.write(float4(gray, gray, gray, 1.0), grid);
+    half4 color = sourceTexture.read(grid);
+    half gray = dot(color.rgb, kRec709Luma);
+    destTexture.write(gray, grid);
 }
 
-kernel void reverseKernel(texture2d<float, access::read> sourceTexture [[texture(TextureIndexSource)]],
-                       texture2d<float, access::write> destTexture [[texture(TextureIndexDestination)]],
-                       uint2 grid [[thread_position_in_grid]]) {
+kernel void reverseKernel(texture2d<half, access::read> sourceTexture [[texture(TextureIndexSource)]],
+                       texture2d<half, access::write> destTexture [[texture(TextureIndexDestination)]],
+                       ushort2 grid [[thread_position_in_grid]]) {
     if(grid.x >= destTexture.get_width() || grid.y >= destTexture.get_height()) {
         return;
     }
-    float4 color = sourceTexture.read(grid);
-    float4 final = float4((1-color.rgb), 1.0);
+    half4 color = sourceTexture.read(grid);
+    half4 final = half4((1-color.rgb), 1.0);
     destTexture.write(final, grid);
 }

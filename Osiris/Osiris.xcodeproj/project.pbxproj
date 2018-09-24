@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43116CB221593E8100CC1C9A /* Image3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43116CB121593E8100CC1C9A /* Image3.jpg */; };
+		4352F16E214ECAD900A78B9A /* example.png in Resources */ = {isa = PBXBuildFile; fileRef = 4352F16D214ECAD900A78B9A /* example.png */; };
 		43557AAA213D77EE001538FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43557AA9213D77EE001538FA /* AppDelegate.swift */; };
 		43557AAC213D77EE001538FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43557AAB213D77EE001538FA /* ViewController.swift */; };
 		43557AAF213D77EE001538FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43557AAD213D77EE001538FA /* Main.storyboard */; };
@@ -16,11 +18,12 @@
 		43557AC2213D7954001538FA /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43557ABF213D7954001538FA /* MathLibrary.swift */; };
 		43557AC3213D7954001538FA /* Osiris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43557AC0213D7954001538FA /* Osiris.swift */; };
 		8166EF07214543160022DEE6 /* Osiris.Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8166EF06214543160022DEE6 /* Osiris.Camera.swift */; };
-		8166EF33214687230022DEE6 /* example.png in Resources */ = {isa = PBXBuildFile; fileRef = 8166EF32214687230022DEE6 /* example.png */; };
 		81D8E65E2143BEE400B395FD /* Osiris.Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D8E65D2143BEE400B395FD /* Osiris.Filter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43116CB121593E8100CC1C9A /* Image3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Image3.jpg; path = ../../../../Downloads/ImageFilterGraphWithHeapsAndFences/Renderer/Images/Image3.jpg; sourceTree = "<group>"; };
+		4352F16D214ECAD900A78B9A /* example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example.png; sourceTree = "<group>"; };
 		43557AA6213D77EE001538FA /* Osiris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Osiris.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43557AA9213D77EE001538FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43557AAB213D77EE001538FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,7 +36,6 @@
 		43557AC0213D7954001538FA /* Osiris.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Osiris.swift; sourceTree = "<group>"; };
 		43557AC4213D797E001538FA /* OsirisShaderBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OsirisShaderBridge.h; sourceTree = "<group>"; };
 		8166EF06214543160022DEE6 /* Osiris.Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Osiris.Camera.swift; sourceTree = "<group>"; };
-		8166EF32214687230022DEE6 /* example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example.png; sourceTree = "<group>"; };
 		81D8E65D2143BEE400B395FD /* Osiris.Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Osiris.Filter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +72,8 @@
 				43557AA9213D77EE001538FA /* AppDelegate.swift */,
 				43557AAB213D77EE001538FA /* ViewController.swift */,
 				43557AAD213D77EE001538FA /* Main.storyboard */,
-				8166EF32214687230022DEE6 /* example.png */,
+				43116CB121593E8100CC1C9A /* Image3.jpg */,
+				4352F16D214ECAD900A78B9A /* example.png */,
 				43557ABD213D7954001538FA /* Metal basic */,
 				43557AB0213D77EF001538FA /* Assets.xcassets */,
 				43557AB2213D77EF001538FA /* LaunchScreen.storyboard */,
@@ -150,9 +153,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43116CB221593E8100CC1C9A /* Image3.jpg in Resources */,
 				43557AB4213D77EF001538FA /* LaunchScreen.storyboard in Resources */,
 				43557AB1213D77EF001538FA /* Assets.xcassets in Resources */,
-				8166EF33214687230022DEE6 /* example.png in Resources */,
+				4352F16E214ECAD900A78B9A /* example.png in Resources */,
 				43557AAF213D77EE001538FA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,7 +325,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = DC.Osiris;
+				PRODUCT_BUNDLE_IDENTIFIER = DC.Osiris.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Osiris/Metal basic/OsirisShaderBridge.h";
 				SWIFT_VERSION = 4.2;
@@ -340,7 +344,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = DC.Osiris;
+				PRODUCT_BUNDLE_IDENTIFIER = DC.Osiris.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Osiris/Metal basic/OsirisShaderBridge.h";
 				SWIFT_VERSION = 4.2;

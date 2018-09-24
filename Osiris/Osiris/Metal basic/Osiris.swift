@@ -11,10 +11,16 @@ import MetalKit
 
 class Osiris: NSObject {
     
+    // Non Transient Object
+    static var device = makeDevice()
+    static var library = makeLibrary()
+    
     typealias DrawPhase = (MTLRenderCommandEncoder)->Void
     
-    lazy var library: MTLLibrary = makeLibrary()
-    lazy var device: MTLDevice = makeDevice()
+    // For using customer device
+    lazy var device: MTLDevice = Osiris.device
+    lazy var library: MTLLibrary = Osiris.library
+    
     lazy var commandQueue: MTLCommandQueue = makeCommandQueue()
     lazy var vertexBuffer: MTLBuffer = makeVertexBuffer()
     lazy var renderPipelineState: MTLRenderPipelineState = makeRenderPipelineState()
@@ -26,43 +32,28 @@ class Osiris: NSObject {
     var draw: DrawPhase?
     
     var shouldProcess: Bool = false
-    var pixelFormat: MTLPixelFormat
-    var viewportSize: CGSize
+    
+    var pixelFormat: MTLPixelFormat = .bgra8Unorm
+    
+    var viewportSize: CGSize?
     var sourceTexture: MTLTexture?
     var destinationTexture: MTLTexture?
     
     var filter: MTLComputePipelineState?
     
-    init(metalView: MTKView) {
-        self.pixelFormat = metalView.colorPixelFormat
-        self.viewportSize = metalView.drawableSize
+    var label: String = ""
+    
+    init(label: String) {
+        self.label = label
         super.init()
-        
-        metalView.delegate = self
-        metalView.device = device
     }
-    
-    // Refactoring
-    //
     var filters:[Filter] = [Filter]()
-    
 }
 
 extension Osiris {
-
     
-    
-    func filters(_ filters: [Filter]?) -> Osiris {
-        guard let filters = filters else {
-            fatalError("[Osiris] ")
-        }
-        self.filters = filters
-        return self
-    }
-    
-    
-    func processImage(_ image:UIImage) {
-        // Texture
+    func processImage(_ image:UIImage) -> Osiris {
+        // Set the input texture
         if sourceTexture == nil {
             let textureLoader = MTKTextureLoader(device: device)
             
@@ -78,11 +69,32 @@ extension Osiris {
             }
             self.sourceTexture = texture
         }
-        
-        shouldProcess = true
+        return self
     }
     
-    func processVideo(_ pixelBuffer: CVPixelBuffer) {
+    func presentOn(metalView: MTKView) {
+        self.pixelFormat = metalView.colorPixelFormat
+        self.viewportSize = metalView.drawableSize
+        
+        metalView.delegate = self
+        metalView.device = self.device
+        
+        self.shouldProcess = true
+    }
+    
+    func addFilters(_ filters: [Filter]?) {
+        
+        guard let filters = filters else {
+            fatalError("[Osiris]")
+        }
+        guard self.filters.count == 0 else {
+            fatalError("Please add the filters only once")
+        }
+        
+        self.filters = filters
+    }
+    
+    func processVideo(_ pixelBuffer: CVPixelBuffer) -> Osiris {
         
         let width = CVPixelBufferGetWidth(pixelBuffer)
         let height = CVPixelBufferGetHeight(pixelBuffer)
@@ -97,58 +109,7 @@ extension Osiris {
         }
         
         sourceTexture = CVMetalTextureGetTexture(result)
-        viewportSize = CGSize(width: width, height: height)
         shouldProcess = true
-    }
-    
-    func grayFilter() -> Osiris {
-        
-        if filter == nil {
-            guard let kernelFunction = library.makeFunction(name: "grayKernel"), let computePipelineState = try? device.makeComputePipelineState(function: kernelFunction) else {
-                fatalError("Create filter fail")
-            }
-            self.filter = computePipelineState
-        }
-        
-        // Do nothing
-        guard let sourceTexture = sourceTexture else {
-            return self
-        }
-        if destinationTexture == nil {
-            let destinationTextureDescriptor = MTLTextureDescriptor()
-            destinationTextureDescriptor.pixelFormat = pixelFormat
-            destinationTextureDescriptor.width = sourceTexture.width
-            destinationTextureDescriptor.height = sourceTexture.height
-            destinationTextureDescriptor.usage = [.shaderRead, .shaderWrite]
-            
-            self.destinationTexture = device.makeTexture(descriptor: destinationTextureDescriptor)
-        }
-        
-        return self
-    }
-    
-    func reverseFilter() -> Osiris {
-        
-        if filter == nil {
-            guard let kernelFunction = library.makeFunction(name: "reverseKernel"), let computePipelineState = try? device.makeComputePipelineState(function: kernelFunction) else {
-                fatalError("Create filter fail")
-            }
-            self.filter = computePipelineState
-        }
-        
-        // Do nothing
-        guard let sourceTexture = sourceTexture else {
-            return self
-        }
-        if destinationTexture == nil {
-            let destinationTextureDescriptor = MTLTextureDescriptor()
-            destinationTextureDescriptor.pixelFormat = pixelFormat
-            destinationTextureDescriptor.width = sourceTexture.width
-            destinationTextureDescriptor.height = sourceTexture.height
-            destinationTextureDescriptor.usage = [.shaderRead, .shaderWrite]
-            
-            self.destinationTexture = device.makeTexture(descriptor: destinationTextureDescriptor)
-        }
         
         return self
     }
@@ -170,60 +131,44 @@ extension Osiris: MTKViewDelegate {
             fatalError("Invalid render pass descriptor in \(view)")
         }
         
-        guard let commandBuffer = commandQueue.makeCommandBuffer() else {
-            fatalError("Create command buffer fail")
+        // Filters
+        //
+        
+        var finalTexture = sourceTexture
+        
+        if finalTexture != nil {
+            
+            // A command buffer for compute pipeline
+            guard let commandBuffer = commandQueue.makeCommandBuffer() else {
+                fatalError("Create command buffer fail")
+            }
+            
+            self.filters.forEach {
+                $0.sourceTexture = finalTexture
+                finalTexture = $0.performFilterWithCommandBuffer(commandBuffer)
+            }
+            commandBuffer.commit()
         }
         
-        // Compute pipeline
-        if let filter = filter {
-            guard let computeCommandEncoder = commandBuffer.makeComputeCommandEncoder() else {
-                fatalError("Create compute command buffer fail")
-            }
-            computeCommandEncoder.setComputePipelineState(filter)
-            computeCommandEncoder.setTexture(sourceTexture, index: Int(TextureIndexSource.rawValue))
-            computeCommandEncoder.setTexture(destinationTexture, index: Int(TextureIndexDestination.rawValue))
-            
-            guard let sourceTexture = sourceTexture else {
-                fatalError()
-            }
-            
-            // Optimize threads for GPU
-            let width = filter.threadExecutionWidth
-            let height = filter.maxTotalThreadsPerThreadgroup / width
-            let threadsPerThreadgroup = MTLSize(width: width, height: height, depth: 1)
-            
-            let threadgroupsPerGrid = MTLSize(width: (sourceTexture.width + width - 1)/width,
-                                              height: (sourceTexture.height + height - 1)/height,
-                                              depth: 1)
-            
-            computeCommandEncoder.dispatchThreadgroups(threadgroupsPerGrid, threadsPerThreadgroup:
-                threadsPerThreadgroup)
-            
-            computeCommandEncoder.endEncoding()
+        guard let commandBuffer = commandQueue.makeCommandBuffer() else {
+            fatalError("Create command buffer fail")
         }
         
         // Render pipeline
         guard let renderCommandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {
             fatalError("Create render command encoder fail")
         }
-        
-        let viewPort = MTLViewport(originX: 0, originY: 0, width: Double(viewportSize.width), height: Double(viewportSize.height), znear: -1, zfar: 1)
-        renderCommandEncoder.setViewport(viewPort)
         renderCommandEncoder.setRenderPipelineState(renderPipelineState)
+        
+        let viewPort = MTLViewport(originX: 0, originY: 0, width: Double(view.drawableSize.width), height: Double(view.drawableSize.height), znear: -1, zfar: 1)
+        renderCommandEncoder.setViewport(viewPort)
         
         // Vertex
         renderCommandEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: Int(BufferIndexVertex.rawValue))
-        
-        // Texture
-        if let texture = destinationTexture {
-            renderCommandEncoder.setFragmentTexture(texture, index: 0)
-        } else {
-            renderCommandEncoder.setFragmentTexture(sourceTexture, index: 0)
-        }
-        
-        // Sampler
+        // Fragment
+        renderCommandEncoder.setFragmentTexture(finalTexture, index: 0)
         renderCommandEncoder.setFragmentSamplerState(sampler, index: 0)
-        
+        // Issue draw
         renderCommandEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 6)
         renderCommandEncoder.endEncoding()
         
@@ -234,19 +179,19 @@ extension Osiris: MTKViewDelegate {
         }
         commandBuffer.addCompletedHandler { (_) in
             self.shouldProcess = false
+            self.sourceTexture = nil
         }
         commandBuffer.present(drawable)
         commandBuffer.commit()
         
         // Reset resources
-        sourceTexture = nil
     }
 }
 
 // MARK: Lazy Loading
 extension Osiris {
     
-    func makeDevice() -> MTLDevice {
+    class func makeDevice() -> MTLDevice {
         guard let device = MTLCreateSystemDefaultDevice() else {
             fatalError("Metal is not supported in this device")
         }
@@ -312,7 +257,7 @@ extension Osiris {
         return sampler
     }
     
-    func makeLibrary() -> MTLLibrary {
+    class func makeLibrary() -> MTLLibrary {
         guard let library = device.makeDefaultLibrary() else {
             fatalError("Metal need a shader file")
         }
