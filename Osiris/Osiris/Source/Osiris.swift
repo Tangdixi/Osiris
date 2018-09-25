@@ -74,7 +74,6 @@ extension Osiris {
     
     func presentOn(metalView: MTKView) {
         self.pixelFormat = metalView.colorPixelFormat
-        self.viewportSize = metalView.drawableSize
         
         metalView.delegate = self
         metalView.device = self.device
@@ -110,6 +109,7 @@ extension Osiris {
         
         sourceTexture = CVMetalTextureGetTexture(result)
         shouldProcess = true
+        viewportSize = CGSize(width: width, height: height)
         
         return self
     }
@@ -160,8 +160,14 @@ extension Osiris: MTKViewDelegate {
         }
         renderCommandEncoder.setRenderPipelineState(renderPipelineState)
         
-        let viewPort = MTLViewport(originX: 0, originY: 0, width: Double(view.drawableSize.width), height: Double(view.drawableSize.height), znear: -1, zfar: 1)
-        renderCommandEncoder.setViewport(viewPort)
+        // Set up view port size
+        if let viewportSize = viewportSize {
+            let viewPort = MTLViewport(originX: 0, originY: 0, width: Double(viewportSize.width), height: Double(viewportSize.height), znear: -1, zfar: 1)
+            renderCommandEncoder.setViewport(viewPort)
+        } else {
+            let viewPort = MTLViewport(originX: 0, originY: 0, width: Double(view.drawableSize.width), height: Double(view.drawableSize.height), znear: -1, zfar: 1)
+            renderCommandEncoder.setViewport(viewPort)
+        }
         
         // Vertex
         renderCommandEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: Int(BufferIndexVertex.rawValue))

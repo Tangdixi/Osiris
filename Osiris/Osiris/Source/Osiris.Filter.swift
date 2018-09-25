@@ -63,10 +63,10 @@ class Filter {
     }
     
     func makeComputePipelineState() -> MTLComputePipelineState {
-        guard let kernalFunction = Osiris.library.makeFunction(name: kernalName) else {
+        guard let kernelFunction = Osiris.library.makeFunction(name: kernalName) else {
             fatalError()
         }
-        guard let computePipelineState = try? Osiris.device.makeComputePipelineState(function: kernalFunction) else {
+        guard let computePipelineState = try? Osiris.device.makeComputePipelineState(function: kernelFunction) else {
             fatalError()
         }
         return computePipelineState
@@ -76,9 +76,9 @@ class Filter {
 enum FilterType: String {
     typealias RawValue = String
     
-    case luma = "lumaKernal"
+    case luma = "lumaKernel"
     case reverse = "reverseKernel"
-    case blur = "gaussianblurKernal"
+    case blur = "gaussianblurKernel"
 }
 
 protocol Filterable {

@@ -28,18 +28,7 @@
  * THE SOFTWARE.
  */
 
-// Math Library v0.06 6 Apr 2018
-// v0.02 changed projection to be LH or RH
-// v0.03 13 Feb 2018
-//       added LH LookAt matrix
-// v0.04 3 Mar 2018
-//       added .xyz var so you can access float4 xyz values
-//       added float3x3(normalFrom4x4:)
-//       updated upperLeft()
-// v0.05 17 March 2018
-//       added orthographic projection matrix
-// v0.06 6 Apr 2018
-//       updated to Xcode 9.3 - self.init() required
+
 
 import simd
 

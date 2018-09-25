@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
+//  CameraController.swift
 //  Osiris
 //
-//  Created by DC on 2018/9/3.
+//  Created by 汤迪希 on 2018/9/25.
 //  Copyright © 2018 DC. All rights reserved.
 //
 
@@ -10,69 +10,64 @@ import UIKit
 import MetalKit
 import AVFoundation
 
-class ViewController: UIViewController {
+class CameraController: UIViewController {
 
+    lazy var processor: Osiris = makeProcessor()
     lazy var metalView: MTKView = makeMetalView()
-    lazy var metalView2: MTKView = makeMetalView()
-    
-    var imageRenderer: Osiris!
-    var osiris2: Osiris!
-    
     lazy var captureSession = makeCaptureSession()
+    
+    convenience init() {
+        self.init(nibName:nil, bundle:nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         captureSession.startRunning()
-//        osiris2.processImage(UIImage(named: "example")!)
-//        imageRenderer.processImage(UIImage(named: "example")!).presentOn(metalView: metalView)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        captureSession.stopRunning()
     }
 }
 
-// MARK: Layouts
-extension ViewController {
+extension CameraController {
+    
     func setupViews() {
-        view.addSubview(metalView)
-//        view.addSubview(metalView2)
-//
-        imageRenderer = makeRenderer(metalView)
-//        osiris2 = makeRenderer(metalView2)
-//
-//        metalView.center = CGPoint(x: view.center.x, y: 200)
-//        metalView2.center = CGPoint(x: view.center.x, y: 400)
+        view.backgroundColor = .white
+        view.addSubview(metalView);
     }
 }
 
-extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
         }
-        imageRenderer.processVideo(pixelBuffer).presentOn(metalView: metalView)
+        processor.processVideo(pixelBuffer).presentOn(metalView: metalView)
     }
 }
 
-extension ViewController {
+extension CameraController {
     
-    func makeMetalView() -> MTKView {
-        let metal = MTKView(frame: CGRect(x: 0, y: 0, width: 375, height: 667))
-        metal.clearColor = MTLClearColorMake(0, 0, 0, 1)
-        metal.framebufferOnly = false
-        return metal
+    func makeProcessor() -> Osiris {
+        let osiris = Osiris(label: "Image Filter")
+        let reverse = Filter(kernalName: "lumaKernel")
+        osiris.addFilters([reverse])
+        
+        return osiris
     }
     
-    func makeRenderer(_ metalView: MTKView) -> Osiris {
-        let renderer = Osiris(label: "Image Process")
-        
-        let reverse = Filter(kernalName: "reverseKernel")
-        let luma = Filter(kernalName: "lumaKernel")
-        
-        renderer.addFilters([reverse, luma])
-        
-        return renderer
+    func makeMetalView() -> MTKView {
+        let metalView = MTKView(frame: CGRect(x: 0, y: 0, width: 350, height: 500))
+        metalView.clearColor = MTLClearColorMake(0, 0, 0, 1)
+        metalView.center = view.center
+        return metalView
     }
     
     func makeCaptureSession() -> AVCaptureSession {
@@ -113,3 +108,4 @@ extension ViewController {
         return session
     }
 }
+

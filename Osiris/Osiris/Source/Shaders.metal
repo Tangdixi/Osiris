@@ -31,7 +31,7 @@ fragment float4 fragment_main(const VertexOut in [[stage_in]],
 
 constant half3 kRec709Luma = half3(0.2126, 0.7152, 0.0722);
 
-kernel void lumaKernal(texture2d<half, access::read> sourceTexture [[texture(TextureIndexSource)]],
+kernel void lumaKernel(texture2d<half, access::read> sourceTexture [[texture(TextureIndexSource)]],
                        texture2d<half, access::write> destTexture [[texture(TextureIndexDestination)]],
                        ushort2 grid [[thread_position_in_grid]]) {
     if(grid.x >= destTexture.get_width() || grid.y >= destTexture.get_height()) {
