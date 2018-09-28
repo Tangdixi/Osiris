@@ -28,27 +28,3 @@ fragment float4 fragment_main(const VertexOut in [[stage_in]],
                               sampler textureSampler [[sampler(0)]]) {
     return is_null_texture(baseColorTexture)? float4(0.8,0.8,0.5,1) : float4(baseColorTexture.sample(textureSampler, in.uv).rgb, 1.0);
 }
-
-constant half3 kRec709Luma = half3(0.2126, 0.7152, 0.0722);
-
-kernel void lumaKernel(texture2d<half, access::read> sourceTexture [[texture(TextureIndexSource)]],
-                       texture2d<half, access::write> destTexture [[texture(TextureIndexDestination)]],
-                       ushort2 grid [[thread_position_in_grid]]) {
-    if(grid.x >= destTexture.get_width() || grid.y >= destTexture.get_height()) {
-        return;
-    }
-    half4 color = sourceTexture.read(grid);
-    half gray = dot(color.rgb, kRec709Luma);
-    destTexture.write(gray, grid);
-}
-
-kernel void reverseKernel(texture2d<half, access::read> sourceTexture [[texture(TextureIndexSource)]],
-                       texture2d<half, access::write> destTexture [[texture(TextureIndexDestination)]],
-                       ushort2 grid [[thread_position_in_grid]]) {
-    if(grid.x >= destTexture.get_width() || grid.y >= destTexture.get_height()) {
-        return;
-    }
-    half4 color = sourceTexture.read(grid);
-    half4 final = half4((1-color.rgb), 1.0);
-    destTexture.write(final, grid);
-}

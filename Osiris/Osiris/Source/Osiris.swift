@@ -47,7 +47,7 @@ class Osiris: NSObject {
         self.label = label
         super.init()
     }
-    var filters:[Filter] = [Filter]()
+    var filters:[Filterable] = [Filterable]()
 }
 
 extension Osiris {
@@ -81,7 +81,7 @@ extension Osiris {
         self.shouldProcess = true
     }
     
-    func addFilters(_ filters: [Filter]?) {
+    func addFilters(_ filters: [Filterable]?) {
         
         guard let filters = filters else {
             fatalError("[Osiris]")
@@ -133,7 +133,6 @@ extension Osiris: MTKViewDelegate {
         
         // Filters
         //
-        
         var finalTexture = sourceTexture
         
         if finalTexture != nil {
@@ -144,7 +143,10 @@ extension Osiris: MTKViewDelegate {
             }
             
             self.filters.forEach {
-                $0.sourceTexture = finalTexture
+                
+                guard finalTexture != nil else { return }
+                
+                $0.sourceTexture = finalTexture!
                 finalTexture = $0.performFilterWithCommandBuffer(commandBuffer)
             }
             commandBuffer.commit()
@@ -184,13 +186,13 @@ extension Osiris: MTKViewDelegate {
             fatalError("Invalid drawable object in \(view)")
         }
         commandBuffer.addCompletedHandler { (_) in
+            // Reset resources
+            
             self.shouldProcess = false
-            self.sourceTexture = nil
+//            self.sourceTexture = nil
         }
         commandBuffer.present(drawable)
         commandBuffer.commit()
-        
-        // Reset resources
     }
 }
 

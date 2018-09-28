@@ -46,8 +46,8 @@ extension ImageFilteringController {
     
     func makeProcessor() -> Osiris {
         let osiris = Osiris(label: "Image Filter")
-        let reverse = Filter(kernalName: "reverseKernel")
-        osiris.addFilters([reverse])
+        
+        osiris.addFilters([Invert()])
         
         return osiris
     }

@@ -57,8 +57,8 @@ extension CameraController {
     
     func makeProcessor() -> Osiris {
         let osiris = Osiris(label: "Image Filter")
-        let reverse = Filter(kernalName: "lumaKernel")
-        osiris.addFilters([reverse])
+
+        osiris.addFilters([Invert()])
         
         return osiris
     }
@@ -73,7 +73,6 @@ extension CameraController {
     func makeCaptureSession() -> AVCaptureSession {
         
         let session = AVCaptureSession()
-        session.sessionPreset = .hd1280x720
         
         // Get the back camera
         guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back) else {

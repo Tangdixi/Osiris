@@ -28,8 +28,6 @@
  * THE SOFTWARE.
  */
 
-
-
 import simd
 
 let π = Float.pi

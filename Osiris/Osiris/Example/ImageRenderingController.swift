@@ -44,7 +44,7 @@ extension ImageRenderingController {
 extension ImageRenderingController {
     
     func makeProcessor() -> Osiris {
-        let osiris = Osiris(label: "Image Render")
+        let osiris = Osiris(label: "Image Render")        
         return osiris
     }
     

@@ -67,10 +67,10 @@ extension ViewController {
     func makeRenderer(_ metalView: MTKView) -> Osiris {
         let renderer = Osiris(label: "Image Process")
         
-        let reverse = Filter(kernalName: "reverseKernel")
-        let luma = Filter(kernalName: "lumaKernel")
-        
-        renderer.addFilters([reverse, luma])
+//        let reverse = Filterable(kernalName: "reverseKernel")
+//        let luma = Filterable(kernalName: "lumaKernel")
+//        
+//        renderer.addFilters([reverse, luma])
         
         return renderer
     }

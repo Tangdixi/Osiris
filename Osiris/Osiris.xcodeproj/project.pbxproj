@@ -21,6 +21,10 @@
 		8191BB36215A51770090B8A0 /* ImageRenderingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191BB35215A51770090B8A0 /* ImageRenderingController.swift */; };
 		8191BB38215A58B80090B8A0 /* ImageFilteringController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191BB37215A58B80090B8A0 /* ImageFilteringController.swift */; };
 		8191BB3B215A59B60090B8A0 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191BB3A215A59B60090B8A0 /* CameraController.swift */; };
+		81A2C608215E0A910038F64A /* Luma.metal in Sources */ = {isa = PBXBuildFile; fileRef = 81A2C607215E0A910038F64A /* Luma.metal */; };
+		81A2C60B215E27770038F64A /* Osiris.Luma.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A2C60A215E27770038F64A /* Osiris.Luma.swift */; };
+		81A2C60D215E30850038F64A /* Osiris.Invert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A2C60C215E30850038F64A /* Osiris.Invert.swift */; };
+		81A2C60F215E30900038F64A /* Invert.metal in Sources */ = {isa = PBXBuildFile; fileRef = 81A2C60E215E30900038F64A /* Invert.metal */; };
 		81D8E65E2143BEE400B395FD /* Osiris.Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D8E65D2143BEE400B395FD /* Osiris.Filter.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +46,10 @@
 		8191BB35215A51770090B8A0 /* ImageRenderingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRenderingController.swift; sourceTree = "<group>"; };
 		8191BB37215A58B80090B8A0 /* ImageFilteringController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFilteringController.swift; sourceTree = "<group>"; };
 		8191BB3A215A59B60090B8A0 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		81A2C607215E0A910038F64A /* Luma.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Luma.metal; sourceTree = "<group>"; };
+		81A2C60A215E27770038F64A /* Osiris.Luma.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Osiris.Luma.swift; sourceTree = "<group>"; };
+		81A2C60C215E30850038F64A /* Osiris.Invert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Osiris.Invert.swift; sourceTree = "<group>"; };
+		81A2C60E215E30900038F64A /* Invert.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Invert.metal; sourceTree = "<group>"; };
 		81D8E65D2143BEE400B395FD /* Osiris.Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Osiris.Filter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,12 +99,16 @@
 		43557ABD213D7954001538FA /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				43557ABE213D7954001538FA /* Shaders.metal */,
 				43557ABF213D7954001538FA /* MathLibrary.swift */,
 				43557AC0213D7954001538FA /* Osiris.swift */,
-				81D8E65D2143BEE400B395FD /* Osiris.Filter.swift */,
 				8166EF06214543160022DEE6 /* Osiris.Camera.swift */,
 				43557AC4213D797E001538FA /* OsirisShaderBridge.h */,
+				43557ABE213D7954001538FA /* Shaders.metal */,
+				81D8E65D2143BEE400B395FD /* Osiris.Filter.swift */,
+				81A2C607215E0A910038F64A /* Luma.metal */,
+				81A2C60A215E27770038F64A /* Osiris.Luma.swift */,
+				81A2C60E215E30900038F64A /* Invert.metal */,
+				81A2C60C215E30850038F64A /* Osiris.Invert.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -185,14 +197,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				43557AC1213D7954001538FA /* Shaders.metal in Sources */,
+				81A2C608215E0A910038F64A /* Luma.metal in Sources */,
 				81D8E65E2143BEE400B395FD /* Osiris.Filter.swift in Sources */,
 				43557AAC213D77EE001538FA /* ViewController.swift in Sources */,
 				8191BB34215A4F010090B8A0 /* TableViewController.swift in Sources */,
+				81A2C60D215E30850038F64A /* Osiris.Invert.swift in Sources */,
 				8191BB38215A58B80090B8A0 /* ImageFilteringController.swift in Sources */,
 				8166EF07214543160022DEE6 /* Osiris.Camera.swift in Sources */,
 				8191BB3B215A59B60090B8A0 /* CameraController.swift in Sources */,
 				43557AAA213D77EE001538FA /* AppDelegate.swift in Sources */,
 				8191BB36215A51770090B8A0 /* ImageRenderingController.swift in Sources */,
+				81A2C60B215E27770038F64A /* Osiris.Luma.swift in Sources */,
+				81A2C60F215E30900038F64A /* Invert.metal in Sources */,
 				43557AC3213D7954001538FA /* Osiris.swift in Sources */,
 				43557AC2213D7954001538FA /* MathLibrary.swift in Sources */,
 			);
@@ -338,15 +354,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5A88JF7M74;
+				DEVELOPMENT_TEAM = 533LUBW3FY;
 				INFOPLIST_FILE = Osiris/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = DC.Osiris.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Osiris.dc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Osiris/Source/OsirisShaderBridge.h;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -357,15 +375,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5A88JF7M74;
+				DEVELOPMENT_TEAM = 533LUBW3FY;
 				INFOPLIST_FILE = Osiris/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = DC.Osiris.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Osiris.dc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Osiris/Source/OsirisShaderBridge.h;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
