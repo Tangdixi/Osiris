@@ -98,6 +98,8 @@ extension Osiris {
         let width = CVPixelBufferGetWidth(pixelBuffer)
         let height = CVPixelBufferGetHeight(pixelBuffer)
         
+        let isPlanar = CVPixelBufferIsPlanar(pixelBuffer)
+        
         var tempTexture: CVMetalTexture?
         let status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache, pixelBuffer, nil, pixelFormat, width, height, 0, &tempTexture)
         guard status == kCVReturnSuccess else {

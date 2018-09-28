@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		43116CB221593E8100CC1C9A /* bridge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43116CB121593E8100CC1C9A /* bridge.jpg */; };
 		43557AAA213D77EE001538FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43557AA9213D77EE001538FA /* AppDelegate.swift */; };
-		43557AAC213D77EE001538FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43557AAB213D77EE001538FA /* ViewController.swift */; };
 		43557AAF213D77EE001538FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43557AAD213D77EE001538FA /* Main.storyboard */; };
 		43557AB1213D77EF001538FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43557AB0213D77EF001538FA /* Assets.xcassets */; };
 		43557AB4213D77EF001538FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43557AB2213D77EF001538FA /* LaunchScreen.storyboard */; };
@@ -25,6 +24,7 @@
 		81A2C60B215E27770038F64A /* Osiris.Luma.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A2C60A215E27770038F64A /* Osiris.Luma.swift */; };
 		81A2C60D215E30850038F64A /* Osiris.Invert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A2C60C215E30850038F64A /* Osiris.Invert.swift */; };
 		81A2C60F215E30900038F64A /* Invert.metal in Sources */ = {isa = PBXBuildFile; fileRef = 81A2C60E215E30900038F64A /* Invert.metal */; };
+		81A2C613215E63910038F64A /* VideoRangeYUV.metal in Sources */ = {isa = PBXBuildFile; fileRef = 81A2C612215E63910038F64A /* VideoRangeYUV.metal */; };
 		81D8E65E2143BEE400B395FD /* Osiris.Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D8E65D2143BEE400B395FD /* Osiris.Filter.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +32,6 @@
 		43116CB121593E8100CC1C9A /* bridge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bridge.jpg; path = ../../../../Downloads/ImageFilterGraphWithHeapsAndFences/Renderer/Images/bridge.jpg; sourceTree = "<group>"; };
 		43557AA6213D77EE001538FA /* Osiris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Osiris.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43557AA9213D77EE001538FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		43557AAB213D77EE001538FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		43557AAE213D77EE001538FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		43557AB0213D77EF001538FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43557AB3213D77EF001538FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -50,6 +49,7 @@
 		81A2C60A215E27770038F64A /* Osiris.Luma.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Osiris.Luma.swift; sourceTree = "<group>"; };
 		81A2C60C215E30850038F64A /* Osiris.Invert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Osiris.Invert.swift; sourceTree = "<group>"; };
 		81A2C60E215E30900038F64A /* Invert.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Invert.metal; sourceTree = "<group>"; };
+		81A2C612215E63910038F64A /* VideoRangeYUV.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = VideoRangeYUV.metal; sourceTree = "<group>"; };
 		81D8E65D2143BEE400B395FD /* Osiris.Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Osiris.Filter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,7 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				43557AA9213D77EE001538FA /* AppDelegate.swift */,
-				43557AAB213D77EE001538FA /* ViewController.swift */,
 				8191BB39215A58CB0090B8A0 /* Example */,
 				43557AAD213D77EE001538FA /* Main.storyboard */,
 				43116CB121593E8100CC1C9A /* bridge.jpg */,
@@ -99,16 +98,15 @@
 		43557ABD213D7954001538FA /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				43557ABF213D7954001538FA /* MathLibrary.swift */,
 				43557AC0213D7954001538FA /* Osiris.swift */,
 				8166EF06214543160022DEE6 /* Osiris.Camera.swift */,
 				43557AC4213D797E001538FA /* OsirisShaderBridge.h */,
+				43557ABF213D7954001538FA /* MathLibrary.swift */,
 				43557ABE213D7954001538FA /* Shaders.metal */,
 				81D8E65D2143BEE400B395FD /* Osiris.Filter.swift */,
-				81A2C607215E0A910038F64A /* Luma.metal */,
-				81A2C60A215E27770038F64A /* Osiris.Luma.swift */,
-				81A2C60E215E30900038F64A /* Invert.metal */,
-				81A2C60C215E30850038F64A /* Osiris.Invert.swift */,
+				81A2C612215E63910038F64A /* VideoRangeYUV.metal */,
+				81A2C610215E3C9C0038F64A /* Luma */,
+				81A2C611215E3CAD0038F64A /* Invert */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -122,6 +120,24 @@
 				8191BB3A215A59B60090B8A0 /* CameraController.swift */,
 			);
 			path = Example;
+			sourceTree = "<group>";
+		};
+		81A2C610215E3C9C0038F64A /* Luma */ = {
+			isa = PBXGroup;
+			children = (
+				81A2C607215E0A910038F64A /* Luma.metal */,
+				81A2C60A215E27770038F64A /* Osiris.Luma.swift */,
+			);
+			path = Luma;
+			sourceTree = "<group>";
+		};
+		81A2C611215E3CAD0038F64A /* Invert */ = {
+			isa = PBXGroup;
+			children = (
+				81A2C60E215E30900038F64A /* Invert.metal */,
+				81A2C60C215E30850038F64A /* Osiris.Invert.swift */,
+			);
+			path = Invert;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,9 +215,9 @@
 				43557AC1213D7954001538FA /* Shaders.metal in Sources */,
 				81A2C608215E0A910038F64A /* Luma.metal in Sources */,
 				81D8E65E2143BEE400B395FD /* Osiris.Filter.swift in Sources */,
-				43557AAC213D77EE001538FA /* ViewController.swift in Sources */,
 				8191BB34215A4F010090B8A0 /* TableViewController.swift in Sources */,
 				81A2C60D215E30850038F64A /* Osiris.Invert.swift in Sources */,
+				81A2C613215E63910038F64A /* VideoRangeYUV.metal in Sources */,
 				8191BB38215A58B80090B8A0 /* ImageFilteringController.swift in Sources */,
 				8166EF07214543160022DEE6 /* Osiris.Camera.swift in Sources */,
 				8191BB3B215A59B60090B8A0 /* CameraController.swift in Sources */,

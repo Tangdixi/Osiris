@@ -49,7 +49,7 @@ extension CameraController: AVCaptureVideoDataOutputSampleBufferDelegate {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
         }
-        processor.processVideo(pixelBuffer).presentOn(metalView: metalView)
+        processor.processVideo(pixelBuffer)//.presentOn(metalView: metalView)
     }
 }
 
@@ -58,7 +58,7 @@ extension CameraController {
     func makeProcessor() -> Osiris {
         let osiris = Osiris(label: "Image Filter")
 
-        osiris.addFilters([Invert()])
+        osiris.addFilters([Luma(), Invert()])
         
         return osiris
     }
@@ -90,7 +90,7 @@ extension CameraController {
         let output = AVCaptureVideoDataOutput()
         output.alwaysDiscardsLateVideoFrames = true
         output.videoSettings = [
-            kCVPixelBufferPixelFormatTypeKey as AnyHashable as! String: NSNumber(value: kCVPixelFormatType_32BGRA),
+            kCVPixelBufferPixelFormatTypeKey as AnyHashable as! String: NSNumber(value: kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange), //kCVPixelFormatType_32BGRA
         ]
         let queue = DispatchQueue(label: "com.captureVideo.dc")
         output.setSampleBufferDelegate(self, queue: queue)
@@ -107,4 +107,3 @@ extension CameraController {
         return session
     }
 }
-
